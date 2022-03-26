@@ -2188,6 +2188,7 @@ class CUP$JavaParser$actions {
 		Method method = (Method)((java_cup.runtime.Symbol) CUP$JavaParser$stack.peek()).value;
 				
 		ArrayList<Member> arr = new ArrayList(); //add method
+		arr.add(method);
 		RESULT=arr;
 	
               CUP$JavaParser$result = parser.getSymbolFactory().newSymbol("class_member_declaration",29, ((java_cup.runtime.Symbol)CUP$JavaParser$stack.peek()), ((java_cup.runtime.Symbol)CUP$JavaParser$stack.peek()), RESULT);
@@ -2315,11 +2316,18 @@ class CUP$JavaParser$actions {
               Method RESULT =null;
 		int methodleft = ((java_cup.runtime.Symbol)CUP$JavaParser$stack.elementAt(CUP$JavaParser$top-1)).left;
 		int methodright = ((java_cup.runtime.Symbol)CUP$JavaParser$stack.elementAt(CUP$JavaParser$top-1)).right;
-		Object method = (Object)((java_cup.runtime.Symbol) CUP$JavaParser$stack.elementAt(CUP$JavaParser$top-1)).value;
+		Method method = (Method)((java_cup.runtime.Symbol) CUP$JavaParser$stack.elementAt(CUP$JavaParser$top-1)).value;
 		int variablesleft = ((java_cup.runtime.Symbol)CUP$JavaParser$stack.peek()).left;
 		int variablesright = ((java_cup.runtime.Symbol)CUP$JavaParser$stack.peek()).right;
 		Object variables = (Object)((java_cup.runtime.Symbol) CUP$JavaParser$stack.peek()).value;
-
+		
+			System.out.println("Parámetros de: "  + method.getName());
+			System.out.println(method.getParams());
+			method.getParams().forEach(param ->{				
+				param.setScope("Método " + method.getName());
+			});
+			RESULT=method;
+		
               CUP$JavaParser$result = parser.getSymbolFactory().newSymbol("method_declaration",35, ((java_cup.runtime.Symbol)CUP$JavaParser$stack.elementAt(CUP$JavaParser$top-1)), ((java_cup.runtime.Symbol)CUP$JavaParser$stack.peek()), RESULT);
             }
           return CUP$JavaParser$result;
@@ -2327,8 +2335,17 @@ class CUP$JavaParser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 71: // method_header ::= modifiers_opt type method_declarator 
             {
-              Object RESULT =null;
-
+              Method RESULT =null;
+		int typeleft = ((java_cup.runtime.Symbol)CUP$JavaParser$stack.elementAt(CUP$JavaParser$top-1)).left;
+		int typeright = ((java_cup.runtime.Symbol)CUP$JavaParser$stack.elementAt(CUP$JavaParser$top-1)).right;
+		String type = (String)((java_cup.runtime.Symbol) CUP$JavaParser$stack.elementAt(CUP$JavaParser$top-1)).value;
+		int methodleft = ((java_cup.runtime.Symbol)CUP$JavaParser$stack.peek()).left;
+		int methodright = ((java_cup.runtime.Symbol)CUP$JavaParser$stack.peek()).right;
+		Method method = (Method)((java_cup.runtime.Symbol) CUP$JavaParser$stack.peek()).value;
+		
+			method.setType(type);			
+			RESULT=method;	
+		
               CUP$JavaParser$result = parser.getSymbolFactory().newSymbol("method_header",36, ((java_cup.runtime.Symbol)CUP$JavaParser$stack.elementAt(CUP$JavaParser$top-2)), ((java_cup.runtime.Symbol)CUP$JavaParser$stack.peek()), RESULT);
             }
           return CUP$JavaParser$result;
@@ -2336,8 +2353,14 @@ class CUP$JavaParser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 72: // method_header ::= modifiers_opt VOID method_declarator 
             {
-              Object RESULT =null;
-
+              Method RESULT =null;
+		int methodleft = ((java_cup.runtime.Symbol)CUP$JavaParser$stack.peek()).left;
+		int methodright = ((java_cup.runtime.Symbol)CUP$JavaParser$stack.peek()).right;
+		Method method = (Method)((java_cup.runtime.Symbol) CUP$JavaParser$stack.peek()).value;
+		
+			method.setType("void");
+			RESULT=method;
+		
               CUP$JavaParser$result = parser.getSymbolFactory().newSymbol("method_header",36, ((java_cup.runtime.Symbol)CUP$JavaParser$stack.elementAt(CUP$JavaParser$top-2)), ((java_cup.runtime.Symbol)CUP$JavaParser$stack.peek()), RESULT);
             }
           return CUP$JavaParser$result;
@@ -2345,11 +2368,20 @@ class CUP$JavaParser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 73: // method_declarator ::= IDENTIFIER LPAREN formal_parameter_list_opt RPAREN 
             {
-              Object RESULT =null;
+              Method RESULT =null;
 		int idleft = ((java_cup.runtime.Symbol)CUP$JavaParser$stack.elementAt(CUP$JavaParser$top-3)).left;
 		int idright = ((java_cup.runtime.Symbol)CUP$JavaParser$stack.elementAt(CUP$JavaParser$top-3)).right;
 		java.lang.String id = (java.lang.String)((java_cup.runtime.Symbol) CUP$JavaParser$stack.elementAt(CUP$JavaParser$top-3)).value;
-		 /*System.out.println(id);*/ 
+		int paramsleft = ((java_cup.runtime.Symbol)CUP$JavaParser$stack.elementAt(CUP$JavaParser$top-1)).left;
+		int paramsright = ((java_cup.runtime.Symbol)CUP$JavaParser$stack.elementAt(CUP$JavaParser$top-1)).right;
+		ArrayList<Variable> params = (ArrayList<Variable>)((java_cup.runtime.Symbol) CUP$JavaParser$stack.elementAt(CUP$JavaParser$top-1)).value;
+		 
+			Method method = new Method(id, "") ;
+			if(params != null){
+				method.setParams(params);			
+			}
+			RESULT=method;
+		
               CUP$JavaParser$result = parser.getSymbolFactory().newSymbol("method_declarator",37, ((java_cup.runtime.Symbol)CUP$JavaParser$stack.elementAt(CUP$JavaParser$top-3)), ((java_cup.runtime.Symbol)CUP$JavaParser$stack.peek()), RESULT);
             }
           return CUP$JavaParser$result;
@@ -2357,7 +2389,7 @@ class CUP$JavaParser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 74: // formal_parameter_list_opt ::= 
             {
-              Object RESULT =null;
+              ArrayList<Variable> RESULT =null;
 
               CUP$JavaParser$result = parser.getSymbolFactory().newSymbol("formal_parameter_list_opt",38, ((java_cup.runtime.Symbol)CUP$JavaParser$stack.peek()), RESULT);
             }
@@ -2366,8 +2398,13 @@ class CUP$JavaParser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 75: // formal_parameter_list_opt ::= formal_parameter_list 
             {
-              Object RESULT =null;
-
+              ArrayList<Variable> RESULT =null;
+		int paramsleft = ((java_cup.runtime.Symbol)CUP$JavaParser$stack.peek()).left;
+		int paramsright = ((java_cup.runtime.Symbol)CUP$JavaParser$stack.peek()).right;
+		ArrayList<Variable> params = (ArrayList<Variable>)((java_cup.runtime.Symbol) CUP$JavaParser$stack.peek()).value;
+		
+			RESULT=params;
+		
               CUP$JavaParser$result = parser.getSymbolFactory().newSymbol("formal_parameter_list_opt",38, ((java_cup.runtime.Symbol)CUP$JavaParser$stack.peek()), ((java_cup.runtime.Symbol)CUP$JavaParser$stack.peek()), RESULT);
             }
           return CUP$JavaParser$result;
@@ -2375,8 +2412,15 @@ class CUP$JavaParser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 76: // formal_parameter_list ::= formal_parameter 
             {
-              Object RESULT =null;
-
+              ArrayList<Variable> RESULT =null;
+		int paramleft = ((java_cup.runtime.Symbol)CUP$JavaParser$stack.peek()).left;
+		int paramright = ((java_cup.runtime.Symbol)CUP$JavaParser$stack.peek()).right;
+		Variable param = (Variable)((java_cup.runtime.Symbol) CUP$JavaParser$stack.peek()).value;
+		
+			ArrayList<Variable> params = new ArrayList();
+			params.add(param);
+			RESULT=params;
+		
               CUP$JavaParser$result = parser.getSymbolFactory().newSymbol("formal_parameter_list",39, ((java_cup.runtime.Symbol)CUP$JavaParser$stack.peek()), ((java_cup.runtime.Symbol)CUP$JavaParser$stack.peek()), RESULT);
             }
           return CUP$JavaParser$result;
@@ -2384,8 +2428,17 @@ class CUP$JavaParser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 77: // formal_parameter_list ::= formal_parameter_list COMMA formal_parameter 
             {
-              Object RESULT =null;
-
+              ArrayList<Variable> RESULT =null;
+		int arr_paramsleft = ((java_cup.runtime.Symbol)CUP$JavaParser$stack.elementAt(CUP$JavaParser$top-2)).left;
+		int arr_paramsright = ((java_cup.runtime.Symbol)CUP$JavaParser$stack.elementAt(CUP$JavaParser$top-2)).right;
+		ArrayList<Variable> arr_params = (ArrayList<Variable>)((java_cup.runtime.Symbol) CUP$JavaParser$stack.elementAt(CUP$JavaParser$top-2)).value;
+		int paramleft = ((java_cup.runtime.Symbol)CUP$JavaParser$stack.peek()).left;
+		int paramright = ((java_cup.runtime.Symbol)CUP$JavaParser$stack.peek()).right;
+		Variable param = (Variable)((java_cup.runtime.Symbol) CUP$JavaParser$stack.peek()).value;
+		
+			arr_params.add(param);
+			RESULT=arr_params;
+		
               CUP$JavaParser$result = parser.getSymbolFactory().newSymbol("formal_parameter_list",39, ((java_cup.runtime.Symbol)CUP$JavaParser$stack.elementAt(CUP$JavaParser$top-2)), ((java_cup.runtime.Symbol)CUP$JavaParser$stack.peek()), RESULT);
             }
           return CUP$JavaParser$result;
@@ -2393,8 +2446,17 @@ class CUP$JavaParser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 78: // formal_parameter ::= type variable_declarator_id 
             {
-              Object RESULT =null;
-
+              Variable RESULT =null;
+		int typeleft = ((java_cup.runtime.Symbol)CUP$JavaParser$stack.elementAt(CUP$JavaParser$top-1)).left;
+		int typeright = ((java_cup.runtime.Symbol)CUP$JavaParser$stack.elementAt(CUP$JavaParser$top-1)).right;
+		String type = (String)((java_cup.runtime.Symbol) CUP$JavaParser$stack.elementAt(CUP$JavaParser$top-1)).value;
+		int idleft = ((java_cup.runtime.Symbol)CUP$JavaParser$stack.peek()).left;
+		int idright = ((java_cup.runtime.Symbol)CUP$JavaParser$stack.peek()).right;
+		String id = (String)((java_cup.runtime.Symbol) CUP$JavaParser$stack.peek()).value;
+		
+			Variable variable = new Variable(id, type);
+			RESULT=variable;
+		
               CUP$JavaParser$result = parser.getSymbolFactory().newSymbol("formal_parameter",40, ((java_cup.runtime.Symbol)CUP$JavaParser$stack.elementAt(CUP$JavaParser$top-1)), ((java_cup.runtime.Symbol)CUP$JavaParser$stack.peek()), RESULT);
             }
           return CUP$JavaParser$result;

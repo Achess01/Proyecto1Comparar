@@ -10,15 +10,17 @@ import java.util.ArrayList;
  * @author achess
  */
 public class Method extends Member{        
-    private ArrayList<Variable> parameters;
+    private ArrayList<Variable> params;
     private ArrayList<Variable> variables;
 
     public Method(String name, String type) {
-        super(name, type);        
+        super(name, type);
+        params = new ArrayList();
+        variables = new ArrayList();
     }
 
-    public void setParameters(ArrayList<Variable> parameters) {
-        this.parameters = parameters;
+    public void setParams(ArrayList<Variable> params) {
+        this.params = params;
     }
 
     public void setVariables(ArrayList<Variable> variables) {
@@ -26,13 +28,19 @@ public class Method extends Member{
     }
           
     
-    public ArrayList<Variable> getParameters() {
-        return parameters;
+    public ArrayList<Variable> getParams() {
+        return params;
     }
 
     public ArrayList<Variable> getVariables() {
         return variables;
     }
+
+    @Override
+    public String toString() {
+        return "Method{" + super.toString()+ '}';
+    }
+    
     
     
     
