@@ -19,7 +19,7 @@ public class Method extends Member{
         variables = new ArrayList();
     }
 
-    public void setParams(ArrayList<Variable> params) {
+    public void setParams(ArrayList<Variable> params) {        
         this.params = params;
     }
 
