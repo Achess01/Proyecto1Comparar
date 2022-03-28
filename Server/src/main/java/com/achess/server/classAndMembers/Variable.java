@@ -37,7 +37,7 @@ public class Variable extends Member{
 
     @Override
     public String toString() {
-        return "Variable{" + "scope=" + scope + ", counted=" + counted +", "+ super.toString() + '}';
+        return type + " " + name + " - " + scope;
     }
     
     

@@ -11,13 +11,33 @@ import java.util.ArrayList;
  */
 public class JavaClass {
     private String name;
-    private ArrayList<Variable> variables;
-    private ArrayList<Method> methods;
+    private ArrayList<Member> members;    
 
-    public JavaClass(String name, ArrayList<Variable> variables, ArrayList<Method> methods) {
-        this.name = name;
-        this.variables = variables;
-        this.methods = methods;
+    public JavaClass(String name) {
+        this.name = name;        
+        this.members = new ArrayList();
+    }
+
+    public void setMembers(ArrayList<Member> members) {
+        this.members = members;
+    }
+    
+    
+
+    @Override
+    public String toString() {
+        StringBuilder str = new StringBuilder();
+        str.append("JavaClass:\n");
+        str.append("\t"+name+"\n");
+        str.append("\t-Vars and Methods\n");
+        for(Member m: members){
+            str.append(m.toString());
+        }        
+        
+        
+        
+        return str.toString();
     }
         
+    
 }

@@ -38,7 +38,17 @@ public class Method extends Member{
 
     @Override
     public String toString() {
-        return "Method{" + super.toString()+ '}';
+        StringBuilder str = new StringBuilder();        
+        str.append("\t"+type + " " + name+"\n");
+        str.append("\t\t-Params\n");
+        for(Variable p: params){
+            str.append("\t\t\t"+p.toString()+"\n");
+        }
+        str.append("\t\t-Variables\n");
+        for(Variable p: variables){
+            str.append("\t\t\t"+p.toString()+"\n");
+        }
+        return str.toString();
     }
     
     

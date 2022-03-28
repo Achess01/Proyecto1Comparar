@@ -2028,7 +2028,7 @@ class CUP$JavaParser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 50: // class_declaration ::= modifiers_opt CLASS IDENTIFIER class_body 
             {
-              Object RESULT =null;
+              JavaClass RESULT =null;
 		int idleft = ((java_cup.runtime.Symbol)CUP$JavaParser$stack.elementAt(CUP$JavaParser$top-1)).left;
 		int idright = ((java_cup.runtime.Symbol)CUP$JavaParser$stack.elementAt(CUP$JavaParser$top-1)).right;
 		java.lang.String id = (java.lang.String)((java_cup.runtime.Symbol) CUP$JavaParser$stack.elementAt(CUP$JavaParser$top-1)).value;
@@ -2036,6 +2036,7 @@ class CUP$JavaParser$actions {
 		int arrright = ((java_cup.runtime.Symbol)CUP$JavaParser$stack.peek()).right;
 		ArrayList<Member> arr = (ArrayList<Member>)((java_cup.runtime.Symbol) CUP$JavaParser$stack.peek()).value;
 		 
+		JavaClass jc = new JavaClass(id);
 		if(arr != null){
 			arr.forEach(member ->{
 				if(member instanceof Variable){
@@ -2043,8 +2044,9 @@ class CUP$JavaParser$actions {
 					v.setScope("Clase " + id);
 				}
 			});
-		} 
-		System.out.println(arr);
+			jc.setMembers(arr);
+		}
+		System.out.println(jc);
 	
               CUP$JavaParser$result = parser.getSymbolFactory().newSymbol("class_declaration",24, ((java_cup.runtime.Symbol)CUP$JavaParser$stack.elementAt(CUP$JavaParser$top-3)), ((java_cup.runtime.Symbol)CUP$JavaParser$stack.peek()), RESULT);
             }
