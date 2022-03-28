@@ -2159,8 +2159,10 @@ class CUP$JavaParser$actions {
               ArrayList<Member> RESULT =null;
 		int constructorleft = ((java_cup.runtime.Symbol)CUP$JavaParser$stack.peek()).left;
 		int constructorright = ((java_cup.runtime.Symbol)CUP$JavaParser$stack.peek()).right;
-		Object constructor = (Object)((java_cup.runtime.Symbol) CUP$JavaParser$stack.peek()).value;
-
+		ArrayList<Member> constructor = (ArrayList<Member>)((java_cup.runtime.Symbol) CUP$JavaParser$stack.peek()).value;
+		
+			RESULT=constructor;
+		
               CUP$JavaParser$result = parser.getSymbolFactory().newSymbol("class_body_declaration",28, ((java_cup.runtime.Symbol)CUP$JavaParser$stack.peek()), ((java_cup.runtime.Symbol)CUP$JavaParser$stack.peek()), RESULT);
             }
           return CUP$JavaParser$result;
@@ -2331,10 +2333,13 @@ class CUP$JavaParser$actions {
 			method.getParams().forEach(param ->{				
 				param.setScope("Método " + method.getName());
 			});
+
+			//Quitar
 			System.out.println("Parámetros de: "  + method.getName());			
 			System.out.println(method.getParams());
 			System.out.println("Variables de: "  + method.getName());			
 			method.getVariables().forEach(v -> System.out.println(v.getType() + " " + v.getName()));
+			//Quitar
 			RESULT=method;
 		
               CUP$JavaParser$result = parser.getSymbolFactory().newSymbol("method_declaration",35, ((java_cup.runtime.Symbol)CUP$JavaParser$stack.elementAt(CUP$JavaParser$top-1)), ((java_cup.runtime.Symbol)CUP$JavaParser$stack.peek()), RESULT);
@@ -2496,8 +2501,28 @@ class CUP$JavaParser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 81: // constructor_declaration ::= modifiers_opt constructor_declarator constructor_body 
             {
-              Object RESULT =null;
+              ArrayList<Member> RESULT =null;
+		int methodleft = ((java_cup.runtime.Symbol)CUP$JavaParser$stack.elementAt(CUP$JavaParser$top-1)).left;
+		int methodright = ((java_cup.runtime.Symbol)CUP$JavaParser$stack.elementAt(CUP$JavaParser$top-1)).right;
+		Method method = (Method)((java_cup.runtime.Symbol) CUP$JavaParser$stack.elementAt(CUP$JavaParser$top-1)).value;
+		int variablesleft = ((java_cup.runtime.Symbol)CUP$JavaParser$stack.peek()).left;
+		int variablesright = ((java_cup.runtime.Symbol)CUP$JavaParser$stack.peek()).right;
+		ArrayList<Variable> variables = (ArrayList<Variable>)((java_cup.runtime.Symbol) CUP$JavaParser$stack.peek()).value;
+		
+				if(variables != null){
+					variables.forEach(v -> v.setScope("Constructor " + method.getName()));
+					method.setVariables(variables);
+				}
+				ArrayList<Member> member = new ArrayList();
+				member.add(method);
 
+				System.out.println("Parámetros de: "  + method.getName());			
+				System.out.println(method.getParams());
+				System.out.println("Variables de: "  + method.getName());			
+				method.getVariables().forEach(v -> System.out.println(v.getType() + " " + v.getName()));
+
+				RESULT=member;
+			
               CUP$JavaParser$result = parser.getSymbolFactory().newSymbol("constructor_declaration",42, ((java_cup.runtime.Symbol)CUP$JavaParser$stack.elementAt(CUP$JavaParser$top-2)), ((java_cup.runtime.Symbol)CUP$JavaParser$stack.peek()), RESULT);
             }
           return CUP$JavaParser$result;
@@ -2505,8 +2530,21 @@ class CUP$JavaParser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 82: // constructor_declarator ::= simple_name LPAREN formal_parameter_list_opt RPAREN 
             {
-              Object RESULT =null;
-
+              Method RESULT =null;
+		int idleft = ((java_cup.runtime.Symbol)CUP$JavaParser$stack.elementAt(CUP$JavaParser$top-3)).left;
+		int idright = ((java_cup.runtime.Symbol)CUP$JavaParser$stack.elementAt(CUP$JavaParser$top-3)).right;
+		String id = (String)((java_cup.runtime.Symbol) CUP$JavaParser$stack.elementAt(CUP$JavaParser$top-3)).value;
+		int paramsleft = ((java_cup.runtime.Symbol)CUP$JavaParser$stack.elementAt(CUP$JavaParser$top-1)).left;
+		int paramsright = ((java_cup.runtime.Symbol)CUP$JavaParser$stack.elementAt(CUP$JavaParser$top-1)).right;
+		ArrayList<Variable> params = (ArrayList<Variable>)((java_cup.runtime.Symbol) CUP$JavaParser$stack.elementAt(CUP$JavaParser$top-1)).value;
+		
+			Method method = new Method(id, "~constructor");
+			if(params != null){
+				params.forEach(v -> v.setScope("Constructor " + id));
+				method.setParams(params);
+			}
+			RESULT=method;
+		
               CUP$JavaParser$result = parser.getSymbolFactory().newSymbol("constructor_declarator",43, ((java_cup.runtime.Symbol)CUP$JavaParser$stack.elementAt(CUP$JavaParser$top-3)), ((java_cup.runtime.Symbol)CUP$JavaParser$stack.peek()), RESULT);
             }
           return CUP$JavaParser$result;
@@ -2514,8 +2552,13 @@ class CUP$JavaParser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 83: // constructor_body ::= LBRACE explicit_constructor_invocation block_statements RBRACE 
             {
-              Object RESULT =null;
-
+              ArrayList<Variable> RESULT =null;
+		int variablesleft = ((java_cup.runtime.Symbol)CUP$JavaParser$stack.elementAt(CUP$JavaParser$top-1)).left;
+		int variablesright = ((java_cup.runtime.Symbol)CUP$JavaParser$stack.elementAt(CUP$JavaParser$top-1)).right;
+		ArrayList<Variable> variables = (ArrayList<Variable>)((java_cup.runtime.Symbol) CUP$JavaParser$stack.elementAt(CUP$JavaParser$top-1)).value;
+		
+				RESULT=variables;
+			
               CUP$JavaParser$result = parser.getSymbolFactory().newSymbol("constructor_body",44, ((java_cup.runtime.Symbol)CUP$JavaParser$stack.elementAt(CUP$JavaParser$top-3)), ((java_cup.runtime.Symbol)CUP$JavaParser$stack.peek()), RESULT);
             }
           return CUP$JavaParser$result;
@@ -2523,7 +2566,7 @@ class CUP$JavaParser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 84: // constructor_body ::= LBRACE explicit_constructor_invocation RBRACE 
             {
-              Object RESULT =null;
+              ArrayList<Variable> RESULT =null;
 
               CUP$JavaParser$result = parser.getSymbolFactory().newSymbol("constructor_body",44, ((java_cup.runtime.Symbol)CUP$JavaParser$stack.elementAt(CUP$JavaParser$top-2)), ((java_cup.runtime.Symbol)CUP$JavaParser$stack.peek()), RESULT);
             }
@@ -2532,8 +2575,13 @@ class CUP$JavaParser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 85: // constructor_body ::= LBRACE block_statements RBRACE 
             {
-              Object RESULT =null;
-
+              ArrayList<Variable> RESULT =null;
+		int variablesleft = ((java_cup.runtime.Symbol)CUP$JavaParser$stack.elementAt(CUP$JavaParser$top-1)).left;
+		int variablesright = ((java_cup.runtime.Symbol)CUP$JavaParser$stack.elementAt(CUP$JavaParser$top-1)).right;
+		ArrayList<Variable> variables = (ArrayList<Variable>)((java_cup.runtime.Symbol) CUP$JavaParser$stack.elementAt(CUP$JavaParser$top-1)).value;
+		
+			RESULT=variables;
+		
               CUP$JavaParser$result = parser.getSymbolFactory().newSymbol("constructor_body",44, ((java_cup.runtime.Symbol)CUP$JavaParser$stack.elementAt(CUP$JavaParser$top-2)), ((java_cup.runtime.Symbol)CUP$JavaParser$stack.peek()), RESULT);
             }
           return CUP$JavaParser$result;
@@ -2541,7 +2589,7 @@ class CUP$JavaParser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 86: // constructor_body ::= LBRACE RBRACE 
             {
-              Object RESULT =null;
+              ArrayList<Variable> RESULT =null;
 
               CUP$JavaParser$result = parser.getSymbolFactory().newSymbol("constructor_body",44, ((java_cup.runtime.Symbol)CUP$JavaParser$stack.elementAt(CUP$JavaParser$top-1)), ((java_cup.runtime.Symbol)CUP$JavaParser$stack.peek()), RESULT);
             }
