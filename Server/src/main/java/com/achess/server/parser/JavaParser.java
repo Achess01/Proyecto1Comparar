@@ -1458,9 +1458,11 @@ public class JavaParser extends java_cup.runtime.lr_parser {
 
 
  
+	private boolean firstProject;
   
-  public JavaParser(JavaLexer lexer){
+  public JavaParser(JavaLexer lexer, boolean firstProject){
         super(lexer);
+		this.firstProject = firstProject;
     }
     public void syntax_error(Symbol cur_token) {        
 		List<Integer> tokens = expected_token_ids();
@@ -2337,10 +2339,7 @@ class CUP$JavaParser$actions {
 			});
 
 			//Quitar
-			System.out.println("Parámetros de: "  + method.getName());			
-			System.out.println(method.getParams());
-			System.out.println("Variables de: "  + method.getName());			
-			method.getVariables().forEach(v -> System.out.println(v.getType() + " " + v.getName()));
+			
 			//Quitar
 			RESULT=method;
 		
@@ -2516,13 +2515,7 @@ class CUP$JavaParser$actions {
 					method.setVariables(variables);
 				}
 				ArrayList<Member> member = new ArrayList();
-				member.add(method);
-
-				System.out.println("Parámetros de: "  + method.getName());			
-				System.out.println(method.getParams());
-				System.out.println("Variables de: "  + method.getName());			
-				method.getVariables().forEach(v -> System.out.println(v.getType() + " " + v.getName()));
-
+				member.add(method);				
 				RESULT=member;
 			
               CUP$JavaParser$result = parser.getSymbolFactory().newSymbol("constructor_declaration",42, ((java_cup.runtime.Symbol)CUP$JavaParser$stack.elementAt(CUP$JavaParser$top-2)), ((java_cup.runtime.Symbol)CUP$JavaParser$stack.peek()), RESULT);
