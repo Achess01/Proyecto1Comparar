@@ -48,7 +48,7 @@ public class JavaClass {
         str.append("\t-Methods\n");
         for(Member m: methods){
             str.append(m.toString());
-        }                                
+        }                        
         return str.toString();
     }
         

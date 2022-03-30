@@ -10,10 +10,12 @@ package com.achess.server.classAndMembers;
 public abstract class Member {
     protected String name;
     protected String type;
+    protected boolean counted;
 
     public Member(String name, String type) {
         this.name = name;
         this.type = type;
+        this.counted = false;
     }
 
     public String getName() {
@@ -31,6 +33,15 @@ public abstract class Member {
     public void setType(String type) {
         this.type = type;
     }
+
+    public boolean isCounted() {
+        return counted;
+    }
+
+    public void setCounted(boolean counted) {
+        this.counted = counted;
+    }
+        
 
     @Override
     public String toString() {

@@ -22,7 +22,8 @@ public class MainTest {
         try{
             FileInputStream stream = new FileInputStream("/home/achess/Documents/Tareas/Compi1/Proyecto1/JavaParserLexer/Test.java");
             Reader reader = new InputStreamReader(stream);            
-            JavaLexer lexer = new JavaLexer(reader);            
+            JavaLexer lexer = new JavaLexer(reader);    
+            lexer.setFirstProject(true);
             JavaParser parser = new JavaParser(lexer, true);             
             try{                
                 parser.parse();

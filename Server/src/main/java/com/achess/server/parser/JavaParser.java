@@ -2048,7 +2048,8 @@ class CUP$JavaParser$actions {
 			});
 			jc.setMembers(arr);
 		}
-		System.out.println(jc);
+		JavaProject.getProject(firstProject).addClass(jc);
+		System.out.println(JavaProject.getProject(firstProject));		
 	
               CUP$JavaParser$result = parser.getSymbolFactory().newSymbol("class_declaration",24, ((java_cup.runtime.Symbol)CUP$JavaParser$stack.elementAt(CUP$JavaParser$top-3)), ((java_cup.runtime.Symbol)CUP$JavaParser$stack.peek()), RESULT);
             }
@@ -2336,11 +2337,7 @@ class CUP$JavaParser$actions {
 			}
 			method.getParams().forEach(param ->{				
 				param.setScope("Método " + method.getName());
-			});
-
-			//Quitar
-			
-			//Quitar
+			});			
 			RESULT=method;
 		
               CUP$JavaParser$result = parser.getSymbolFactory().newSymbol("method_declaration",35, ((java_cup.runtime.Symbol)CUP$JavaParser$stack.elementAt(CUP$JavaParser$top-1)), ((java_cup.runtime.Symbol)CUP$JavaParser$stack.peek()), RESULT);
