@@ -3,6 +3,7 @@
  */
 package com.achess.server.classAndMembers;
 
+import com.achess.server.repeatedMembers.Repeated;
 import java.util.ArrayList;
 
 /**
@@ -14,14 +15,20 @@ public class JavaProject {
     private static JavaProject secondProject;
     private ArrayList<JavaClass> classes;
     private ArrayList<JavaComment> comments; 
+    private int totalVariables;
+    private int totalMethods;
     
     private JavaProject(){
         classes = new ArrayList();
         comments = new ArrayList();
-    }
+        totalVariables = 0;
+        totalMethods = 0;
+    }        
     
     public void addClass(JavaClass jc){
-        classes.add(jc);
+        totalVariables += jc.totalVariables();
+        totalMethods += jc.totalMethods();
+        classes.add(jc);        
     }
     
     public void addComment(String comment){        
@@ -51,9 +58,31 @@ public class JavaProject {
         firstProject = null;
         secondProject = null;
     }
+        
     
-    public static void compare(JavaProject first, JavaProject second){
+    public static void compare(){
         //Crear objeto de repetido y contar apariciones > 1 para agregarlos a repetidos
+        Repeated.clear();
+        Repeated.getRepeated().addTotalVariables(firstProject.totalVariables);
+        Repeated.getRepeated().addTotalVariables(secondProject.totalVariables);
+        
+        Repeated.getRepeated().totalMethods(firstProject.totalMethods);
+        Repeated.getRepeated().totalMethods(secondProject.totalMethods);
+        
+        Repeated.getRepeated().totalClasses(firstProject.classes.size());
+        Repeated.getRepeated().totalClasses(secondProject.classes.size());
+        
+        Repeated.getRepeated().totalComments(firstProject.comments.size());
+        Repeated.getRepeated().totalComments(secondProject.comments.size());
+        
+        //Variables and methods
+        for(JavaClass jc: firstProject.classes){
+            for(JavaClass jc2: secondProject.classes){
+                jc.getRepeatedVariables(jc2.getVariables());
+                jc.getRepeatedMethods(jc2.getMethods());
+            }
+        }
+        
     }
 
     @Override

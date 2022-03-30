@@ -3,6 +3,7 @@
  */
 package com.achess.server.classAndMembers;
 
+import com.achess.server.repeatedMembers.*;
 import java.util.ArrayList;
 
 /**
@@ -10,6 +11,7 @@ import java.util.ArrayList;
  * @author achess
  */
 public class JavaClass {
+    private boolean counted;
     private String name;
     private ArrayList<Method> methods;    
     private ArrayList<Variable> variables;
@@ -18,6 +20,7 @@ public class JavaClass {
         this.name = name;        
         this.methods = new ArrayList();
         this.variables = new ArrayList();
+        this.counted = false;
     }
 
     public void setMembers(ArrayList<Member> members) {
@@ -34,8 +37,68 @@ public class JavaClass {
         });
     }
     
+    public void getRepeatedVariables(ArrayList<Variable> variables2){        
+        for(Variable v: variables){
+            
+            RepeatedVariable rv = new RepeatedVariable(v.getType(), v.getName());
+            rv.addPlace(v.getScope());
+            v.setCounted(true);            
+            
+            for(Variable v2: variables2){                
+                if(v.equals(v2)){                    
+                    rv.addPlace(v2.getScope());
+                    rv.repeated();
+                    if(!v2.counted){
+                        v2.setCounted(true);
+                        rv.addCount();
+                    }                    
+                }                
+            }
+            if(rv.isRepeated()){                
+                Repeated.getRepeated().addVariable(rv);
+                Repeated.getRepeated().setRepeatedVariables(rv.getCounted());
+            }
+        }
+                
+    }
     
+    public void getRepeatedMethods(ArrayList<Method> methods2){
+        for(Method m: methods){            
+            RepeatedMethod rm = new RepeatedMethod(m.getType(), m.getName(), m.getParams().size());
+            m.setCounted(true);            
+            
+            for(Method m2: methods2){     
+                System.out.println("-----------------------------");
+                System.out.println(m);
+                System.out.println(m2);
+                System.out.println("-----------------------------");
+                if(m.equals(m2)){                                       
+                    rm.repeated();
+                    if(!m2.counted){
+                        m2.setCounted(true);
+                        rm.addCount();
+                    }                    
+                }                
+            }
+            if(rm.isRepeated()){                
+                Repeated.getRepeated().addMethod(rm);
+                Repeated.getRepeated().setRepeatedMethods(rm.getCounted());
+            }
+        }
+    }
 
+    public String getName() {
+        return name;
+    }
+
+    public ArrayList<Method> getMethods() {
+        return methods;
+    }
+
+    public ArrayList<Variable> getVariables() {
+        return variables;
+    }
+        
     @Override
     public String toString() {
         StringBuilder str = new StringBuilder();
@@ -52,5 +115,11 @@ public class JavaClass {
         return str.toString();
     }
         
+    public int totalVariables(){
+        return variables.size();
+    }
     
+    public int totalMethods(){
+        return methods.size();
+    }
 }

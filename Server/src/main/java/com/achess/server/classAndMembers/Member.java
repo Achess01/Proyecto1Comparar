@@ -3,6 +3,8 @@
  */
 package com.achess.server.classAndMembers;
 
+import java.util.Objects;
+
 /**
  *
  * @author achess
@@ -47,6 +49,31 @@ public abstract class Member {
     public String toString() {
         return "name=" + name + ", type=" + type;
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Member other = (Member) obj;
+        if (!Objects.equals(this.name, other.name)) {
+            return false;
+        }
+        return Objects.equals(this.type, other.type);
+    }
+    
     
     
 }

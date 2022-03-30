@@ -8,13 +8,12 @@ package com.achess.server.classAndMembers;
  * @author achess
  */
 public class Variable extends Member{    
-    private String scope;    
+    private String scope;        
         
     public Variable(String name, String type) {
-        super(name, type);        
+        super(name, type);             
     }
-        
-
+               
     public String getScope() {
         return scope;
     }
@@ -27,7 +26,5 @@ public class Variable extends Member{
     public String toString() {
         return type + " " + name + " - " + scope;
     }
-    
-    
-    
+            
 }
