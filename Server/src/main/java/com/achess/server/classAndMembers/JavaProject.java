@@ -3,6 +3,7 @@
  */
 package com.achess.server.classAndMembers;
 
+import com.achess.server.UI.MainForm;
 import com.achess.server.error.JavaError;
 import com.achess.server.repeatedMembers.*;
 import java.util.ArrayList;
@@ -85,8 +86,7 @@ public class JavaProject {
                     rv.repeated();
                     if(!v2.counted){                        
                         v2.setCounted(true);
-                        rv.addCount();
-                        System.out.println(v2.getName() +"- Contado - " + rv.getCounted());
+                        rv.addCount();                        
                     }                    
                 }                
             }
@@ -161,6 +161,8 @@ public class JavaProject {
     public static void compare(){
         if(!JavaError.getError().isErrorFounded()){
             doCompare();
+            MainForm.getForm().log("------- SIN ERRORES -------\n");
+            MainForm.getForm().log(Repeated.getRepeated().toString());
         }
     }
     private static void doCompare(){

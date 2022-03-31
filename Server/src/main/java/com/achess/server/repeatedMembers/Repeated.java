@@ -110,8 +110,7 @@ public class Repeated {
         float classScores = 0;
         float commentScores = 0;
         
-        if(countVars[1] != 0){
-            System.out.println("Hola");
+        if(countVars[1] != 0){            
             variableScores = countVars[0]/countVars[1]*SCORE_PERCENT;
         }
         if(countMethods[1] != 0){
@@ -124,8 +123,7 @@ public class Repeated {
             commentScores = countComments[0]/countComments[1]*SCORE_PERCENT;
         }
         
-        this.score = variableScores + methodScores + classScores + commentScores;   
-        System.out.println(variableScores);
+        this.score = variableScores + methodScores + classScores + commentScores;        
     }
 
     @Override

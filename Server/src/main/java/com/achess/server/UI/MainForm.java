@@ -52,6 +52,7 @@ public class MainForm extends javax.swing.JFrame {
 
         jScrollPane1.setForeground(java.awt.Color.white);
 
+        logText.setEditable(false);
         logText.setBackground(new java.awt.Color(32, 32, 38));
         logText.setColumns(20);
         logText.setFont(new java.awt.Font("Cantarell", 0, 16)); // NOI18N

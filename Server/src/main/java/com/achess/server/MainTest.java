@@ -31,7 +31,7 @@ public class MainTest {
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+                if ("GTK+".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
@@ -100,7 +100,6 @@ public class MainTest {
             ex.printStackTrace();
         }
         
-        JavaProject.compare();
-        System.out.println(Repeated.getRepeated());
+        JavaProject.compare();        
     }
 }

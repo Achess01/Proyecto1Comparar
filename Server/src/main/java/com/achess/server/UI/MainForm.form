@@ -59,6 +59,7 @@
       <SubComponents>
         <Component class="javax.swing.JTextArea" name="logText">
           <Properties>
+            <Property name="editable" type="boolean" value="false"/>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="26" green="20" red="20" type="rgb"/>
             </Property>
