@@ -3,6 +3,7 @@
  */
 package com.achess.server.classAndMembers;
 
+import com.achess.server.error.JavaError;
 import com.achess.server.repeatedMembers.*;
 import java.util.ArrayList;
 
@@ -156,7 +157,13 @@ public class JavaProject {
         }
     }
     
+    
     public static void compare(){
+        if(!JavaError.getError().isErrorFounded()){
+            doCompare();
+        }
+    }
+    private static void doCompare(){
         //Crear objeto de repetido y contar apariciones > 1 para agregarlos a repetidos
         Repeated.clear();
         Repeated.getRepeated().addTotalVariables(firstProject.totalVariables);

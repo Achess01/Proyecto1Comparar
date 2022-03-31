@@ -6,6 +6,7 @@ package com.achess.server.lexer;
 import com.achess.server.parser.sym;
 import java_cup.runtime.*;
 import com.achess.server.classAndMembers.JavaProject;
+import com.achess.server.error.JavaError;
 
 
 // See https://github.com/jflex-de/jflex/issues/222
@@ -1149,7 +1150,7 @@ public class JavaLexer implements java_cup.runtime.Scanner {
       else {
         switch (zzAction < 0 ? zzAction : ZZ_ACTION[zzAction]) {
           case 1:
-            { throw new RuntimeException("Illegal character \""+yytext()+
+            { JavaError.getError().log("Illegal character \""+yytext()+
                                                               "\" at line "+yyline+", column "+yycolumn);
             }
             // fall through
@@ -1280,7 +1281,7 @@ public class JavaLexer implements java_cup.runtime.Scanner {
             // fall through
           case 116: break;
           case 27:
-            { throw new RuntimeException("Unterminated string at end of line");
+            { JavaError.getError().log("Unterminated string at end of line");
             }
             // fall through
           case 117: break;
@@ -1290,7 +1291,7 @@ public class JavaLexer implements java_cup.runtime.Scanner {
             // fall through
           case 118: break;
           case 29:
-            { throw new RuntimeException("Unterminated character literal at end of line");
+            { JavaError.getError().log("Unterminated character literal at end of line");
             }
             // fall through
           case 119: break;
@@ -1380,7 +1381,7 @@ public class JavaLexer implements java_cup.runtime.Scanner {
             // fall through
           case 136: break;
           case 47:
-            { throw new RuntimeException("Illegal escape sequence \""+yytext()+"\"");
+            { JavaError.getError().log("Illegal escape sequence \""+yytext()+"\"");
             }
             // fall through
           case 137: break;

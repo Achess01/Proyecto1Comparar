@@ -10,6 +10,7 @@ import com.achess.server.classAndMembers.*;
 import java_cup.runtime.*;
 import java.util.List;
 import java.util.ArrayList;
+import com.achess.server.error.JavaError;
 import java_cup.runtime.XMLElement;
 
 /** CUP v0.11b 20160615 (GIT 4ac7450) generated parser.
@@ -1475,14 +1476,14 @@ public class JavaParser extends java_cup.runtime.lr_parser {
 			des += fromId +" o ";            
 		}
         des = des.substring(0, des.length() - 3);
-		System.out.print("Error sintáctico ln:"+line+" col:"+column+ " " +lexeme + "\n");
-        System.out.println(des);
 
+		JavaError.getError().log("Error sintáctico ln:"+line+" col:"+column+ " " +lexeme + "\n");		
+		JavaError.getError().log(des);        
 	}
 
     public void report_fatal_error(String message, Object info) {
-		System.out.println("message: " + message);
-		System.out.println("info: " + info);
+		JavaError.getError().log("Message: " + message);
+		JavaError.getError().log("Info: " + info.toString());		
 	}
     
 
@@ -2117,10 +2118,12 @@ class CUP$JavaParser$actions {
 		int bdright = ((java_cup.runtime.Symbol)CUP$JavaParser$stack.peek()).right;
 		ArrayList<Member> bd = (ArrayList<Member>)((java_cup.runtime.Symbol) CUP$JavaParser$stack.peek()).value;
 		
-			if(bd != null){
+			if(bd != null && arr != null){
 				arr.addAll(bd);
+				RESULT=arr;
+			}else if(bd != null){
+				RESULT=bd;
 			}
-			RESULT=arr;
 		
               CUP$JavaParser$result = parser.getSymbolFactory().newSymbol("class_body_declarations",26, ((java_cup.runtime.Symbol)CUP$JavaParser$stack.elementAt(CUP$JavaParser$top-1)), ((java_cup.runtime.Symbol)CUP$JavaParser$stack.peek()), RESULT);
             }
