@@ -34,7 +34,7 @@ public class JavaClass {
 
     public void clear(){
         variables.clear();
-        methods.clear();
+        //methods.clear();
     }
     
     public void setMembers(ArrayList<Member> members) {
@@ -51,6 +51,7 @@ public class JavaClass {
         });
     }
     
+    /*
     public void getRepeatedVariables(ArrayList<Variable> variables2){        
         for(Variable v: variables){
             
@@ -97,6 +98,7 @@ public class JavaClass {
             }
         }
     }
+    */
 
     public String getName() {
         return name;

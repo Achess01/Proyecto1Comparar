@@ -10,15 +10,17 @@ import java.util.ArrayList;
  * @author achess
  */
 public class Repeated {
+    private static final float SCORE_PERCENT = 0.25f;
     private static Repeated repeated;
     private ArrayList<RepeatedVariable> variables;
     private ArrayList<RepeatedMethod> methods;
     private ArrayList<RepeatedClass> classes;
-    private ArrayList<RepeatedComment> comments;    
-    private int countVars[] = {0,0};
-    private int countMethods[] = {0,0};
-    private int countClasses[] = {0,0};
-    private int countComments[] = {0,0};
+    private ArrayList<RepeatedComment> comments;   
+    private float score;
+    private float countVars[] = {0,0};
+    private float countMethods[] = {0,0};
+    private float countClasses[] = {0,0};
+    private float countComments[] = {0,0};
     
     private Repeated(){
         variables = new ArrayList();
@@ -39,11 +41,11 @@ public class Repeated {
     }
     
     public void setRepeatedVariables(int repeatedVariables) {
-        this.countVars[0] += repeatedVariables;
+        this.countVars[0] += (float)repeatedVariables;
     }
     
     public void addTotalVariables(int total){
-        this.countVars[1] += total;
+        this.countVars[1] += (float)total;
     }
 
     public ArrayList<RepeatedVariable> getVariables() {
@@ -79,27 +81,51 @@ public class Repeated {
     }
     
     public void setRepeatedMethods(int repeatedMethods) {
-        this.countMethods[0] += repeatedMethods;
+        this.countMethods[0] += (float)repeatedMethods;
     }
     
     public void totalMethods(int total){
-        this.countMethods[1] += total;
+        this.countMethods[1] += (float)total;
     }
     
     public void setRepeatedClasses(int repeatedClasses) {
-        this.countClasses[0] += repeatedClasses;
+        this.countClasses[0] += (float)repeatedClasses;
     }
 
     public void totalClasses(int total){
-        this.countClasses[1] += total;
+        this.countClasses[1] += (float)total;
     }
 
     public void setRepeatedComments(int repeatedComments) {
-        this.countComments[0] += repeatedComments;
+        this.countComments[0] += (float)repeatedComments;
     }
     
     public void totalComments(int total){
-        this.countComments[1] += total;
+        this.countComments[1] += (float)total;
+    }
+    
+    public void score(){
+        float variableScores = 0;
+        float methodScores = 0;
+        float classScores = 0;
+        float commentScores = 0;
+        
+        if(countVars[1] != 0){
+            System.out.println("Hola");
+            variableScores = countVars[0]/countVars[1]*SCORE_PERCENT;
+        }
+        if(countMethods[1] != 0){
+            methodScores = countMethods[0]/countMethods[1]*SCORE_PERCENT;
+        }
+        if(countClasses[1] != 0){
+            classScores = countClasses[0]/countClasses[1]*SCORE_PERCENT;
+        }
+        if(countComments[1] != 0){
+            commentScores = countComments[0]/countComments[1]*SCORE_PERCENT;
+        }
+        
+        this.score = variableScores + methodScores + classScores + commentScores;   
+        System.out.println(variableScores);
     }
 
     @Override
@@ -113,6 +139,7 @@ public class Repeated {
                 ",\nmethods=" + countMethods[0] + "/" + countMethods[1] +
                 ",\nclasses=" + countClasses[0] + "/" + countClasses[1] +
                 ",\ncomments=" + countComments[0] + "/" + countComments[1] +
+                "\nScore: " + score +
                 '}';
     }
        
