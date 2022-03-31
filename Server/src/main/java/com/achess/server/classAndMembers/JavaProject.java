@@ -3,7 +3,7 @@
  */
 package com.achess.server.classAndMembers;
 
-import com.achess.server.repeatedMembers.Repeated;
+import com.achess.server.repeatedMembers.*;
 import java.util.ArrayList;
 
 /**
@@ -15,17 +15,33 @@ public class JavaProject {
     private static JavaProject secondProject;
     private ArrayList<JavaClass> classes;
     private ArrayList<JavaComment> comments; 
+    private ArrayList<Variable> variables;
+    private ArrayList<Method> methods;
     private int totalVariables;
     private int totalMethods;
     
     private JavaProject(){
         classes = new ArrayList();
         comments = new ArrayList();
+        //Esperando respuesta
+        variables = new ArrayList();
+        methods = new ArrayList();
+        //
         totalVariables = 0;
         totalMethods = 0;
     }        
     
     public void addClass(JavaClass jc){
+        System.out.println("----------Agregando-------");
+        System.out.println(jc.getName());
+        System.out.println(jc.totalVariables());
+        System.out.println(jc.totalMethods());
+        System.out.println("---------------------------");                
+        //Esperando respuesta
+            variables.addAll(jc.getVariables());
+            methods.addAll(jc.getMethods());
+            jc.clear();
+        //Para comparar todas cambiar los métodos de comparación
         totalVariables += jc.totalVariables();
         totalMethods += jc.totalMethods();
         classes.add(jc);        
@@ -77,9 +93,21 @@ public class JavaProject {
         
         //Variables and methods
         for(JavaClass jc: firstProject.classes){
+            RepeatedClass rc = new RepeatedClass(jc.getName());
             for(JavaClass jc2: secondProject.classes){
                 jc.getRepeatedVariables(jc2.getVariables());
                 jc.getRepeatedMethods(jc2.getMethods());
+                if(jc.equals(jc2)){
+                    rc.repeated();
+                    if(!jc2.isCounted()){
+                        jc2.setCounted(true);
+                        rc.addCount();
+                    }
+                }
+            }
+            if(rc.isRepeated()){                
+                Repeated.getRepeated().addClass(rc);
+                Repeated.getRepeated().setRepeatedClasses(rc.getCounted());
             }
         }
         

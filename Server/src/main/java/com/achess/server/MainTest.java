@@ -22,7 +22,7 @@ import java.util.ArrayList;
 public class MainTest {
      public static void main(String[] args) {                       
         try{
-            FileInputStream stream = new FileInputStream("/home/achess/Documents/Tareas/Compi1/Proyecto1/JavaParserLexer/Test.java");
+            FileInputStream stream = new FileInputStream("/home/achess/Documents/Tareas/Compi1/Proyecto1/JavaParserLexer/Test2.java");
             Reader reader = new InputStreamReader(stream);            
             JavaLexer lexer = new JavaLexer(reader);    
             lexer.setFirstProject(true);

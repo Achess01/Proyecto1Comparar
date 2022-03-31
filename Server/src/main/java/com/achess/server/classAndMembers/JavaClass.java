@@ -5,6 +5,7 @@ package com.achess.server.classAndMembers;
 
 import com.achess.server.repeatedMembers.*;
 import java.util.ArrayList;
+import java.util.Objects;
 
 /**
  *
@@ -23,6 +24,19 @@ public class JavaClass {
         this.counted = false;
     }
 
+    public boolean isCounted() {
+        return counted;
+    }
+
+    public void setCounted(boolean counted) {
+        this.counted = counted;
+    }
+
+    public void clear(){
+        variables.clear();
+        methods.clear();
+    }
+    
     public void setMembers(ArrayList<Member> members) {
         members.forEach(member -> {
             if(member instanceof Variable){                
@@ -48,9 +62,10 @@ public class JavaClass {
                 if(v.equals(v2)){                    
                     rv.addPlace(v2.getScope());
                     rv.repeated();
-                    if(!v2.counted){
+                    if(!v2.counted){                        
                         v2.setCounted(true);
                         rv.addCount();
+                        System.out.println(v2.getName() +"- Contado - " + rv.getCounted());
                     }                    
                 }                
             }
@@ -67,11 +82,7 @@ public class JavaClass {
             RepeatedMethod rm = new RepeatedMethod(m.getType(), m.getName(), m.getParams().size());
             m.setCounted(true);            
             
-            for(Method m2: methods2){     
-                System.out.println("-----------------------------");
-                System.out.println(m);
-                System.out.println(m2);
-                System.out.println("-----------------------------");
+            for(Method m2: methods2){                 
                 if(m.equals(m2)){                                       
                     rm.repeated();
                     if(!m2.counted){
@@ -114,6 +125,48 @@ public class JavaClass {
         }                        
         return str.toString();
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final JavaClass other = (JavaClass) obj;
+        
+        if(other.methods.size() != this.methods.size()){
+            return false;
+        }
+        boolean founded = true;
+        for(Method m: this.methods){
+            founded = false;
+            boolean comparated[] = new boolean[other.methods.size()];
+            for(int i = 0; i < other.methods.size(); i++){  
+                Method m2 = other.methods.get(i);                
+                if(!comparated[i] && m.getName().equals(m2.getName())){
+                    comparated[i] = true;
+                    founded = true;
+                    break;
+                }
+            }
+            if(!founded) return false;
+        }
+        
+        return Objects.equals(this.name, other.name);
+    }
+    
+    
         
     public int totalVariables(){
         return variables.size();

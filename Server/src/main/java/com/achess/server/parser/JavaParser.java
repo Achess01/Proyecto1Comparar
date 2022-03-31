@@ -2049,7 +2049,7 @@ class CUP$JavaParser$actions {
 			jc.setMembers(arr);
 		}
 		JavaProject.getProject(firstProject).addClass(jc);
-		System.out.println(JavaProject.getProject(firstProject));		
+		//System.out.println(JavaProject.getProject(firstProject));		
 	
               CUP$JavaParser$result = parser.getSymbolFactory().newSymbol("class_declaration",24, ((java_cup.runtime.Symbol)CUP$JavaParser$stack.elementAt(CUP$JavaParser$top-3)), ((java_cup.runtime.Symbol)CUP$JavaParser$stack.peek()), RESULT);
             }
