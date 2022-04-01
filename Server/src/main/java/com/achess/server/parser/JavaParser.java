@@ -1478,7 +1478,7 @@ public class JavaParser extends java_cup.runtime.lr_parser {
         des = des.substring(0, des.length() - 3);
 
 		JavaError.getError().log("Error sintáctico ln:"+line+" col:"+column+ " " +lexeme + "\n");		
-		JavaError.getError().log(des);        
+		JavaError.getError().log(des+"\n");
 	}
 
     public void report_fatal_error(String message, Object info) {

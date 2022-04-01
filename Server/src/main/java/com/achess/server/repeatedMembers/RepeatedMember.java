@@ -54,7 +54,28 @@ public abstract class RepeatedMember {
 
     @Override
     public String toString() {
-        return type + " " + name + " - " + repeated;
+        StringBuilder str = new StringBuilder();
+        str.append('"');
+        str.append("Nombre");
+        str.append('"');        
+        str.append(':');        
+        str.append('"');
+        str.append(this.name);
+        str.append('"');
+        //{"Nombre":"nombre"
+        str.append(',');
+        
+        str.append('"');
+        str.append("Tipo");
+        str.append('"');        
+        str.append(':');        
+        str.append('"');
+        str.append(this.type);
+        str.append('"');
+        
+        str.append(',');
+        //"Nombre":"nombre","Tipo","tipo",
+        return str.toString();
     }
     
             

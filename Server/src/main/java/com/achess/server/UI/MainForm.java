@@ -57,6 +57,7 @@ public class MainForm extends javax.swing.JFrame {
         logText.setColumns(20);
         logText.setFont(new java.awt.Font("Cantarell", 0, 16)); // NOI18N
         logText.setRows(5);
+        logText.setTabSize(1);
         logText.setCaretColor(new java.awt.Color(151, 123, 252));
         logText.setDisabledTextColor(java.awt.Color.white);
         logText.addContainerListener(new java.awt.event.ContainerAdapter() {

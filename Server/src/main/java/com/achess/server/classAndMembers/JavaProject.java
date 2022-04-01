@@ -163,6 +163,8 @@ public class JavaProject {
             doCompare();
             MainForm.getForm().log("------- SIN ERRORES -------\n");
             MainForm.getForm().log(Repeated.getRepeated().toString());
+            MainForm.getForm().log("------- DETALLES QUITAR -------\n");
+            MainForm.getForm().log(Repeated.getRepeated().getDetails());
         }
     }
     private static void doCompare(){

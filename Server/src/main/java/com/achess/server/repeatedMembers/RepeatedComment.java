@@ -14,7 +14,19 @@ public class RepeatedComment extends RepeatedMember{
 
     @Override
     public String toString() {
-        return name;
+         StringBuilder str = new StringBuilder();
+        str.append('{');
+                        
+                
+        str.append('"');
+        str.append("Texto");
+        str.append('"');        
+        str.append(':');        
+        str.append('"');        
+        str.append(name);        
+        str.append('"');                
+        str.append('}');
+        return str.toString();
     }
     
     

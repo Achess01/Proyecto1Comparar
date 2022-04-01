@@ -68,6 +68,7 @@
               <Font name="Cantarell" size="16" style="0"/>
             </Property>
             <Property name="rows" type="int" value="5"/>
+            <Property name="tabSize" type="int" value="1"/>
             <Property name="caretColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="fc" green="7b" red="97" type="rgb"/>
             </Property>

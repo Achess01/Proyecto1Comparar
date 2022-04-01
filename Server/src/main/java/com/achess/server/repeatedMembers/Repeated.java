@@ -125,9 +125,8 @@ public class Repeated {
         
         this.score = variableScores + methodScores + classScores + commentScores;        
     }
-
-    @Override
-    public String toString() {
+    
+    public String getDetails(){
         return "Repeated{" + 
                 "\nvariables=" + variables + 
                 ",\nmethods=" + methods + 
@@ -139,6 +138,95 @@ public class Repeated {
                 ",\ncomments=" + countComments[0] + "/" + countComments[1] +
                 "\nScore: " + score +
                 '}';
+    }
+    
+    public String getStyledJsonElements(ArrayList array){
+        StringBuilder str = new StringBuilder();
+        str.append('[');        
+                
+        for(int x = 0; x < array.size(); x++){
+            str.append('\n');
+            String text = array.get(x).toString();
+            str.append("\t\t");
+            str.append(text);
+            if(x != array.size() - 1) str.append(',');      
+            else str.append("\n\t");
+        }                
+        str.append(']');        
+        
+        return str.toString();
+    }
+
+    @Override
+    public String toString() {                
+        StringBuilder str = new StringBuilder();
+        str.append('{');        
+        str.append('\n');
+        
+        str.append('\t');
+        str.append('"');
+        str.append("Score");
+        str.append('"');
+        
+        str.append(':');
+        
+        str.append('"');
+        str.append(score);
+        str.append('"');
+        
+        
+        str.append(',');
+        str.append('\n');
+        
+        str.append('\t');
+        str.append('"');
+        str.append("Clases");
+        str.append('"');
+        
+        str.append(':');
+                
+        str.append(getStyledJsonElements(classes));        
+        
+        str.append(',');
+        str.append('\n');
+        
+        str.append('\t');
+        str.append('"');
+        str.append("Variables");
+        str.append('"');
+        
+        str.append(':');
+                
+        str.append(getStyledJsonElements(variables));        
+        
+        str.append(',');
+        str.append('\n');
+        
+        str.append('\t');
+        str.append('"');
+        str.append("Metodos");
+        str.append('"');
+        
+        str.append(':');
+                
+        str.append(getStyledJsonElements(methods));        
+        
+        str.append(',');
+        str.append('\n');
+        
+        str.append('\t');
+        str.append('"');
+        str.append("Comentarios");
+        str.append('"');
+        
+        str.append(':');
+                
+        str.append(getStyledJsonElements(comments));        
+                
+        str.append('\n');
+        
+        str.append('}');
+        return str.toString();
     }
        
     

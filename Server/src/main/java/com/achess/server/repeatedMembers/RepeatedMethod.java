@@ -14,5 +14,26 @@ public class RepeatedMethod extends RepeatedMember{
         super(type, name);
         this.parametersAmount = parametersAmount;
     }
+
+    @Override
+    public String toString() {
+         StringBuilder str = new StringBuilder();
+        str.append('{');
+        
+        str.append(super.toString());
+        //"Nombre":"nombre","Tipo","tipo",
+                
+        str.append('"');
+        str.append("Parametros");
+        str.append('"');        
+        str.append(':');                
+        
+        str.append(parametersAmount);
+                                
+        str.append('}');
+        return str.toString();
+    }
+    
+    
         
 }

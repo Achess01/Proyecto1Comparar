@@ -23,10 +23,27 @@ public class RepeatedVariable extends RepeatedMember{
     @Override
     public String toString() {
         StringBuilder str = new StringBuilder();
-        str.append(super.toString()+"\n");
-        for(String p: places){
-            str.append("\t" + p + "\n");
-        }
+        str.append('{');
+        
+        str.append(super.toString());
+        //"Nombre":"nombre","Tipo","tipo",
+                
+        str.append('"');
+        str.append("Funcion");
+        str.append('"');        
+        str.append(':');        
+        str.append('"');
+        
+        for(int x = 0; x < places.size(); x++){
+            String place = places.get(x);
+            str.append(place);
+            if(x != places.size() - 1) str.append(',');
+        }        
+        
+        str.append('"');
+        
+        
+        str.append('}');
         return str.toString();
     }
     
