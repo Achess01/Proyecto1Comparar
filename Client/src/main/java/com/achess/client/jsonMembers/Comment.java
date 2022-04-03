@@ -12,5 +12,11 @@ public class Comment extends Member{
     public Comment(String value) {
         super(value);
     }
+
+    @Override
+    public String toString() {
+        return "Comment{"  + "name=" + value +'}';
+    }
         
+    
 }

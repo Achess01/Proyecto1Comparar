@@ -15,4 +15,11 @@ public class Method extends Member{
         this.type = type;
         this.parameters = parameters;
     }
+
+    @Override
+    public String toString() {
+        return "Method{" + "name=" + value + ", type=" + type + ", parameters=" + parameters + '}';
+    }
+    
+    
 }

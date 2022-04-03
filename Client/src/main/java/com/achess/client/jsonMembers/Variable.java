@@ -18,5 +18,11 @@ public class Variable extends Member{
         this.type = type;
         this.function = function;
     }
+
+    @Override
+    public String toString() {
+        return "Variable{"  + "name=" + value + ", type=" + type + ", function=" + function + '}';
+    }
+    
     
 }
