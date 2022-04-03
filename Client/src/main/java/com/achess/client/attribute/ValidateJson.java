@@ -75,6 +75,7 @@ public class ValidateJson {
         
         if(!error){
             Result.set(score, classes, methods, variables, comments);
+            System.out.println(Result.getResult());
         }
     }
 }

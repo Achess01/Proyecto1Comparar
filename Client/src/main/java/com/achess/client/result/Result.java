@@ -91,7 +91,11 @@ public class Result {
     public void setComments(ArrayList<Comment> comments) {
         this.comments = comments;
     }
+
+    @Override
+    public String toString() {
+        return "Result{\n" + "classes=" + classes + ",\nmethods=" + methods + ",\nvariables=" + variables + ",\ncomments=" + comments + ",\nscore=" + score + '}';
+    }
     
-    
-    
+        
 }

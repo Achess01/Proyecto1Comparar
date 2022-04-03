@@ -7,6 +7,14 @@ package com.achess.client.jsonParserLexer;
 
 import java.util.List;
 import java_cup.runtime.Symbol;
+import com.achess.client.attribute.*;
+import com.achess.client.jsonMembers.Comment;
+import com.achess.client.jsonMembers.JavaClass;
+import com.achess.client.jsonMembers.Method;
+import com.achess.client.jsonMembers.Score;
+import com.achess.client.jsonMembers.Variable;
+import com.achess.client.error.Error;
+import java.util.ArrayList;
 import java_cup.runtime.XMLElement;
 
 /** CUP v0.11b 20160615 (GIT 4ac7450) generated parser.
@@ -209,13 +217,13 @@ public class JsonParser extends java_cup.runtime.lr_parser {
 		}
         des = des.substring(0, des.length() - 3);
 
-		System.out.println("Error sintáctico ln:"+line+" col:"+column+ " " +lexeme + "\n");		
-		if(count) System.out.println(des+"\n");
+		Error.getError().log("Error sintáctico ln:"+line+" col:"+column+ " " +lexeme + "\n");		
+		if(count) Error.getError().log(des+"\n");
 	}
 
     public void report_fatal_error(String message, Object info) {
-		System.out.println("Message: " + message);
-		System.out.println("Info: " + info.toString());		
+		Error.getError().log("Message: " + message);
+		Error.getError().log("Info: " + info.toString());		
 	}
     
 
@@ -271,7 +279,14 @@ class CUP$JsonParser$actions {
           case 2: // json_declaration ::= LBRACE json_body RBRACE 
             {
               Object RESULT =null;
-
+		int bodyleft = ((java_cup.runtime.Symbol)CUP$JsonParser$stack.elementAt(CUP$JsonParser$top-1)).left;
+		int bodyright = ((java_cup.runtime.Symbol)CUP$JsonParser$stack.elementAt(CUP$JsonParser$top-1)).right;
+		ArrayList<Attribute> body = (ArrayList<Attribute>)((java_cup.runtime.Symbol) CUP$JsonParser$stack.elementAt(CUP$JsonParser$top-1)).value;
+		
+                        if(!Error.getError().isErrorFounded()){
+                            ValidateJson.validate(body);
+                        }
+                    
               CUP$JsonParser$result = parser.getSymbolFactory().newSymbol("json_declaration",1, ((java_cup.runtime.Symbol)CUP$JsonParser$stack.elementAt(CUP$JsonParser$top-2)), ((java_cup.runtime.Symbol)CUP$JsonParser$stack.peek()), RESULT);
             }
           return CUP$JsonParser$result;
@@ -279,8 +294,15 @@ class CUP$JsonParser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 3: // json_body ::= json_body_item 
             {
-              Object RESULT =null;
-
+              ArrayList<Attribute> RESULT =null;
+		int attrleft = ((java_cup.runtime.Symbol)CUP$JsonParser$stack.peek()).left;
+		int attrright = ((java_cup.runtime.Symbol)CUP$JsonParser$stack.peek()).right;
+		Attribute attr = (Attribute)((java_cup.runtime.Symbol) CUP$JsonParser$stack.peek()).value;
+		
+                ArrayList<Attribute> attributes = new ArrayList();
+                attributes.add(attr);
+                RESULT=attributes;
+            
               CUP$JsonParser$result = parser.getSymbolFactory().newSymbol("json_body",2, ((java_cup.runtime.Symbol)CUP$JsonParser$stack.peek()), ((java_cup.runtime.Symbol)CUP$JsonParser$stack.peek()), RESULT);
             }
           return CUP$JsonParser$result;
@@ -288,8 +310,17 @@ class CUP$JsonParser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 4: // json_body ::= json_body COMMA json_body_item 
             {
-              Object RESULT =null;
-
+              ArrayList<Attribute> RESULT =null;
+		int arrleft = ((java_cup.runtime.Symbol)CUP$JsonParser$stack.elementAt(CUP$JsonParser$top-2)).left;
+		int arrright = ((java_cup.runtime.Symbol)CUP$JsonParser$stack.elementAt(CUP$JsonParser$top-2)).right;
+		ArrayList<Attribute> arr = (ArrayList<Attribute>)((java_cup.runtime.Symbol) CUP$JsonParser$stack.elementAt(CUP$JsonParser$top-2)).value;
+		int attrleft = ((java_cup.runtime.Symbol)CUP$JsonParser$stack.peek()).left;
+		int attrright = ((java_cup.runtime.Symbol)CUP$JsonParser$stack.peek()).right;
+		Attribute attr = (Attribute)((java_cup.runtime.Symbol) CUP$JsonParser$stack.peek()).value;
+		
+                arr.add(attr);
+                RESULT=arr;
+            
               CUP$JsonParser$result = parser.getSymbolFactory().newSymbol("json_body",2, ((java_cup.runtime.Symbol)CUP$JsonParser$stack.elementAt(CUP$JsonParser$top-2)), ((java_cup.runtime.Symbol)CUP$JsonParser$stack.peek()), RESULT);
             }
           return CUP$JsonParser$result;
@@ -297,7 +328,7 @@ class CUP$JsonParser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 5: // json_body ::= error json_body_item 
             {
-              Object RESULT =null;
+              ArrayList<Attribute> RESULT =null;
 
               CUP$JsonParser$result = parser.getSymbolFactory().newSymbol("json_body",2, ((java_cup.runtime.Symbol)CUP$JsonParser$stack.elementAt(CUP$JsonParser$top-1)), ((java_cup.runtime.Symbol)CUP$JsonParser$stack.peek()), RESULT);
             }
@@ -306,7 +337,7 @@ class CUP$JsonParser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 6: // json_body ::= error RBRACKET 
             {
-              Object RESULT =null;
+              ArrayList<Attribute> RESULT =null;
 
               CUP$JsonParser$result = parser.getSymbolFactory().newSymbol("json_body",2, ((java_cup.runtime.Symbol)CUP$JsonParser$stack.elementAt(CUP$JsonParser$top-1)), ((java_cup.runtime.Symbol)CUP$JsonParser$stack.peek()), RESULT);
             }
@@ -315,8 +346,13 @@ class CUP$JsonParser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 7: // json_body_item ::= score_declaration 
             {
-              Object RESULT =null;
-
+              Attribute RESULT =null;
+		int attrleft = ((java_cup.runtime.Symbol)CUP$JsonParser$stack.peek()).left;
+		int attrright = ((java_cup.runtime.Symbol)CUP$JsonParser$stack.peek()).right;
+		Attribute attr = (Attribute)((java_cup.runtime.Symbol) CUP$JsonParser$stack.peek()).value;
+		
+                    RESULT=attr;
+                
               CUP$JsonParser$result = parser.getSymbolFactory().newSymbol("json_body_item",3, ((java_cup.runtime.Symbol)CUP$JsonParser$stack.peek()), ((java_cup.runtime.Symbol)CUP$JsonParser$stack.peek()), RESULT);
             }
           return CUP$JsonParser$result;
@@ -324,8 +360,13 @@ class CUP$JsonParser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 8: // json_body_item ::= variables_declaration 
             {
-              Object RESULT =null;
-
+              Attribute RESULT =null;
+		int attrleft = ((java_cup.runtime.Symbol)CUP$JsonParser$stack.peek()).left;
+		int attrright = ((java_cup.runtime.Symbol)CUP$JsonParser$stack.peek()).right;
+		Attribute attr = (Attribute)((java_cup.runtime.Symbol) CUP$JsonParser$stack.peek()).value;
+		
+                    RESULT=attr;
+                
               CUP$JsonParser$result = parser.getSymbolFactory().newSymbol("json_body_item",3, ((java_cup.runtime.Symbol)CUP$JsonParser$stack.peek()), ((java_cup.runtime.Symbol)CUP$JsonParser$stack.peek()), RESULT);
             }
           return CUP$JsonParser$result;
@@ -333,8 +374,13 @@ class CUP$JsonParser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 9: // json_body_item ::= methods_declaration 
             {
-              Object RESULT =null;
-
+              Attribute RESULT =null;
+		int attrleft = ((java_cup.runtime.Symbol)CUP$JsonParser$stack.peek()).left;
+		int attrright = ((java_cup.runtime.Symbol)CUP$JsonParser$stack.peek()).right;
+		Attribute attr = (Attribute)((java_cup.runtime.Symbol) CUP$JsonParser$stack.peek()).value;
+		
+                    RESULT=attr;
+                
               CUP$JsonParser$result = parser.getSymbolFactory().newSymbol("json_body_item",3, ((java_cup.runtime.Symbol)CUP$JsonParser$stack.peek()), ((java_cup.runtime.Symbol)CUP$JsonParser$stack.peek()), RESULT);
             }
           return CUP$JsonParser$result;
@@ -342,8 +388,13 @@ class CUP$JsonParser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 10: // json_body_item ::= classes_declaration 
             {
-              Object RESULT =null;
-
+              Attribute RESULT =null;
+		int attrleft = ((java_cup.runtime.Symbol)CUP$JsonParser$stack.peek()).left;
+		int attrright = ((java_cup.runtime.Symbol)CUP$JsonParser$stack.peek()).right;
+		Attribute attr = (Attribute)((java_cup.runtime.Symbol) CUP$JsonParser$stack.peek()).value;
+		
+                    RESULT=attr;
+                
               CUP$JsonParser$result = parser.getSymbolFactory().newSymbol("json_body_item",3, ((java_cup.runtime.Symbol)CUP$JsonParser$stack.peek()), ((java_cup.runtime.Symbol)CUP$JsonParser$stack.peek()), RESULT);
             }
           return CUP$JsonParser$result;
@@ -351,8 +402,13 @@ class CUP$JsonParser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 11: // json_body_item ::= comments_declaration 
             {
-              Object RESULT =null;
-
+              Attribute RESULT =null;
+		int attrleft = ((java_cup.runtime.Symbol)CUP$JsonParser$stack.peek()).left;
+		int attrright = ((java_cup.runtime.Symbol)CUP$JsonParser$stack.peek()).right;
+		Attribute attr = (Attribute)((java_cup.runtime.Symbol) CUP$JsonParser$stack.peek()).value;
+		
+                    RESULT=attr;
+                
               CUP$JsonParser$result = parser.getSymbolFactory().newSymbol("json_body_item",3, ((java_cup.runtime.Symbol)CUP$JsonParser$stack.peek()), ((java_cup.runtime.Symbol)CUP$JsonParser$stack.peek()), RESULT);
             }
           return CUP$JsonParser$result;
@@ -360,8 +416,14 @@ class CUP$JsonParser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 12: // score_declaration ::= SCORE_LITERAL COLON STRING_LITERAL 
             {
-              Object RESULT =null;
-
+              Attribute RESULT =null;
+		int scoreleft = ((java_cup.runtime.Symbol)CUP$JsonParser$stack.peek()).left;
+		int scoreright = ((java_cup.runtime.Symbol)CUP$JsonParser$stack.peek()).right;
+		String score = (String)((java_cup.runtime.Symbol) CUP$JsonParser$stack.peek()).value;
+		
+                            Attribute<Score> att = new Attribute(new Score(score), Attribute.SCORE, scoreleft);
+                            RESULT=att;
+                        
               CUP$JsonParser$result = parser.getSymbolFactory().newSymbol("score_declaration",4, ((java_cup.runtime.Symbol)CUP$JsonParser$stack.elementAt(CUP$JsonParser$top-2)), ((java_cup.runtime.Symbol)CUP$JsonParser$stack.peek()), RESULT);
             }
           return CUP$JsonParser$result;
@@ -369,8 +431,20 @@ class CUP$JsonParser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 13: // variables_declaration ::= VARIABLES_LITERAL COLON LBRACKET list_variables_opt RBRACKET 
             {
-              Object RESULT =null;
-
+              Attribute RESULT =null;
+		int listleft = ((java_cup.runtime.Symbol)CUP$JsonParser$stack.elementAt(CUP$JsonParser$top-1)).left;
+		int listright = ((java_cup.runtime.Symbol)CUP$JsonParser$stack.elementAt(CUP$JsonParser$top-1)).right;
+		ArrayList<Variable> list = (ArrayList<Variable>)((java_cup.runtime.Symbol) CUP$JsonParser$stack.elementAt(CUP$JsonParser$top-1)).value;
+		
+                                ArrayList<Variable> arr;
+                                if(list == null){
+                                    arr = new ArrayList();
+                                }else{
+                                    arr = list;
+                                }
+                                Attribute<ArrayList<Variable>> att = new Attribute(arr, Attribute.VARIABLES, listleft);
+                                RESULT=att;
+                            
               CUP$JsonParser$result = parser.getSymbolFactory().newSymbol("variables_declaration",5, ((java_cup.runtime.Symbol)CUP$JsonParser$stack.elementAt(CUP$JsonParser$top-4)), ((java_cup.runtime.Symbol)CUP$JsonParser$stack.peek()), RESULT);
             }
           return CUP$JsonParser$result;
@@ -378,7 +452,7 @@ class CUP$JsonParser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 14: // list_variables_opt ::= 
             {
-              Object RESULT =null;
+              ArrayList<Variable> RESULT =null;
 
               CUP$JsonParser$result = parser.getSymbolFactory().newSymbol("list_variables_opt",9, ((java_cup.runtime.Symbol)CUP$JsonParser$stack.peek()), RESULT);
             }
@@ -387,8 +461,13 @@ class CUP$JsonParser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 15: // list_variables_opt ::= list_variables 
             {
-              Object RESULT =null;
-
+              ArrayList<Variable> RESULT =null;
+		int listleft = ((java_cup.runtime.Symbol)CUP$JsonParser$stack.peek()).left;
+		int listright = ((java_cup.runtime.Symbol)CUP$JsonParser$stack.peek()).right;
+		ArrayList<Variable> list = (ArrayList<Variable>)((java_cup.runtime.Symbol) CUP$JsonParser$stack.peek()).value;
+		
+                        RESULT=list;
+                    
               CUP$JsonParser$result = parser.getSymbolFactory().newSymbol("list_variables_opt",9, ((java_cup.runtime.Symbol)CUP$JsonParser$stack.peek()), ((java_cup.runtime.Symbol)CUP$JsonParser$stack.peek()), RESULT);
             }
           return CUP$JsonParser$result;
@@ -396,8 +475,15 @@ class CUP$JsonParser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 16: // list_variables ::= variable_item 
             {
-              Object RESULT =null;
-
+              ArrayList<Variable> RESULT =null;
+		int variableleft = ((java_cup.runtime.Symbol)CUP$JsonParser$stack.peek()).left;
+		int variableright = ((java_cup.runtime.Symbol)CUP$JsonParser$stack.peek()).right;
+		Variable variable = (Variable)((java_cup.runtime.Symbol) CUP$JsonParser$stack.peek()).value;
+		
+                    ArrayList<Variable> arr = new ArrayList();
+                    arr.add(variable);
+                    RESULT=arr;
+                
               CUP$JsonParser$result = parser.getSymbolFactory().newSymbol("list_variables",10, ((java_cup.runtime.Symbol)CUP$JsonParser$stack.peek()), ((java_cup.runtime.Symbol)CUP$JsonParser$stack.peek()), RESULT);
             }
           return CUP$JsonParser$result;
@@ -405,8 +491,17 @@ class CUP$JsonParser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 17: // list_variables ::= list_variables COMMA variable_item 
             {
-              Object RESULT =null;
-
+              ArrayList<Variable> RESULT =null;
+		int arrleft = ((java_cup.runtime.Symbol)CUP$JsonParser$stack.elementAt(CUP$JsonParser$top-2)).left;
+		int arrright = ((java_cup.runtime.Symbol)CUP$JsonParser$stack.elementAt(CUP$JsonParser$top-2)).right;
+		ArrayList<Variable> arr = (ArrayList<Variable>)((java_cup.runtime.Symbol) CUP$JsonParser$stack.elementAt(CUP$JsonParser$top-2)).value;
+		int variableleft = ((java_cup.runtime.Symbol)CUP$JsonParser$stack.peek()).left;
+		int variableright = ((java_cup.runtime.Symbol)CUP$JsonParser$stack.peek()).right;
+		Variable variable = (Variable)((java_cup.runtime.Symbol) CUP$JsonParser$stack.peek()).value;
+		
+                    arr.add(variable);                    
+                    RESULT=arr;
+                
               CUP$JsonParser$result = parser.getSymbolFactory().newSymbol("list_variables",10, ((java_cup.runtime.Symbol)CUP$JsonParser$stack.elementAt(CUP$JsonParser$top-2)), ((java_cup.runtime.Symbol)CUP$JsonParser$stack.peek()), RESULT);
             }
           return CUP$JsonParser$result;
@@ -414,8 +509,13 @@ class CUP$JsonParser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 18: // variable_item ::= LBRACE variable_item_body RBRACE 
             {
-              Object RESULT =null;
-
+              Variable RESULT =null;
+		int variableleft = ((java_cup.runtime.Symbol)CUP$JsonParser$stack.elementAt(CUP$JsonParser$top-1)).left;
+		int variableright = ((java_cup.runtime.Symbol)CUP$JsonParser$stack.elementAt(CUP$JsonParser$top-1)).right;
+		Variable variable = (Variable)((java_cup.runtime.Symbol) CUP$JsonParser$stack.elementAt(CUP$JsonParser$top-1)).value;
+		
+                        RESULT=variable;
+                    
               CUP$JsonParser$result = parser.getSymbolFactory().newSymbol("variable_item",11, ((java_cup.runtime.Symbol)CUP$JsonParser$stack.elementAt(CUP$JsonParser$top-2)), ((java_cup.runtime.Symbol)CUP$JsonParser$stack.peek()), RESULT);
             }
           return CUP$JsonParser$result;
@@ -423,8 +523,20 @@ class CUP$JsonParser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 19: // variable_item_body ::= name_item COMMA type_item COMMA function_item 
             {
-              Object RESULT =null;
-
+              Variable RESULT =null;
+		int nameleft = ((java_cup.runtime.Symbol)CUP$JsonParser$stack.elementAt(CUP$JsonParser$top-4)).left;
+		int nameright = ((java_cup.runtime.Symbol)CUP$JsonParser$stack.elementAt(CUP$JsonParser$top-4)).right;
+		String name = (String)((java_cup.runtime.Symbol) CUP$JsonParser$stack.elementAt(CUP$JsonParser$top-4)).value;
+		int typeleft = ((java_cup.runtime.Symbol)CUP$JsonParser$stack.elementAt(CUP$JsonParser$top-2)).left;
+		int typeright = ((java_cup.runtime.Symbol)CUP$JsonParser$stack.elementAt(CUP$JsonParser$top-2)).right;
+		String type = (String)((java_cup.runtime.Symbol) CUP$JsonParser$stack.elementAt(CUP$JsonParser$top-2)).value;
+		int functionleft = ((java_cup.runtime.Symbol)CUP$JsonParser$stack.peek()).left;
+		int functionright = ((java_cup.runtime.Symbol)CUP$JsonParser$stack.peek()).right;
+		String function = (String)((java_cup.runtime.Symbol) CUP$JsonParser$stack.peek()).value;
+		
+                            Variable variable = new Variable(name, type, function);
+                            RESULT=variable;
+                        
               CUP$JsonParser$result = parser.getSymbolFactory().newSymbol("variable_item_body",12, ((java_cup.runtime.Symbol)CUP$JsonParser$stack.elementAt(CUP$JsonParser$top-4)), ((java_cup.runtime.Symbol)CUP$JsonParser$stack.peek()), RESULT);
             }
           return CUP$JsonParser$result;
@@ -432,8 +544,20 @@ class CUP$JsonParser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 20: // methods_declaration ::= METHODS_LITERAL COLON LBRACKET list_methods_opt RBRACKET 
             {
-              Object RESULT =null;
-
+              Attribute RESULT =null;
+		int listleft = ((java_cup.runtime.Symbol)CUP$JsonParser$stack.elementAt(CUP$JsonParser$top-1)).left;
+		int listright = ((java_cup.runtime.Symbol)CUP$JsonParser$stack.elementAt(CUP$JsonParser$top-1)).right;
+		ArrayList<Method> list = (ArrayList<Method>)((java_cup.runtime.Symbol) CUP$JsonParser$stack.elementAt(CUP$JsonParser$top-1)).value;
+		
+                                ArrayList<Method> arr;
+                                if(list == null){
+                                    arr = new ArrayList();
+                                }else{
+                                    arr = list;
+                                }
+                                Attribute<ArrayList<Method>> att = new Attribute(arr, Attribute.METHODS, listleft);
+                                RESULT=att;
+                            
               CUP$JsonParser$result = parser.getSymbolFactory().newSymbol("methods_declaration",6, ((java_cup.runtime.Symbol)CUP$JsonParser$stack.elementAt(CUP$JsonParser$top-4)), ((java_cup.runtime.Symbol)CUP$JsonParser$stack.peek()), RESULT);
             }
           return CUP$JsonParser$result;
@@ -441,7 +565,7 @@ class CUP$JsonParser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 21: // list_methods_opt ::= 
             {
-              Object RESULT =null;
+              ArrayList<Method> RESULT =null;
 
               CUP$JsonParser$result = parser.getSymbolFactory().newSymbol("list_methods_opt",13, ((java_cup.runtime.Symbol)CUP$JsonParser$stack.peek()), RESULT);
             }
@@ -450,8 +574,13 @@ class CUP$JsonParser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 22: // list_methods_opt ::= list_methods 
             {
-              Object RESULT =null;
-
+              ArrayList<Method> RESULT =null;
+		int listleft = ((java_cup.runtime.Symbol)CUP$JsonParser$stack.peek()).left;
+		int listright = ((java_cup.runtime.Symbol)CUP$JsonParser$stack.peek()).right;
+		ArrayList<Method> list = (ArrayList<Method>)((java_cup.runtime.Symbol) CUP$JsonParser$stack.peek()).value;
+		
+                        RESULT=list;
+                    
               CUP$JsonParser$result = parser.getSymbolFactory().newSymbol("list_methods_opt",13, ((java_cup.runtime.Symbol)CUP$JsonParser$stack.peek()), ((java_cup.runtime.Symbol)CUP$JsonParser$stack.peek()), RESULT);
             }
           return CUP$JsonParser$result;
@@ -459,8 +588,15 @@ class CUP$JsonParser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 23: // list_methods ::= method_item 
             {
-              Object RESULT =null;
-
+              ArrayList<Method> RESULT =null;
+		int methodleft = ((java_cup.runtime.Symbol)CUP$JsonParser$stack.peek()).left;
+		int methodright = ((java_cup.runtime.Symbol)CUP$JsonParser$stack.peek()).right;
+		Method method = (Method)((java_cup.runtime.Symbol) CUP$JsonParser$stack.peek()).value;
+		
+                    ArrayList<Method> arr= new ArrayList();
+                    arr.add(method);
+                    RESULT=arr;
+                
               CUP$JsonParser$result = parser.getSymbolFactory().newSymbol("list_methods",14, ((java_cup.runtime.Symbol)CUP$JsonParser$stack.peek()), ((java_cup.runtime.Symbol)CUP$JsonParser$stack.peek()), RESULT);
             }
           return CUP$JsonParser$result;
@@ -468,8 +604,17 @@ class CUP$JsonParser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 24: // list_methods ::= list_methods COMMA method_item 
             {
-              Object RESULT =null;
-
+              ArrayList<Method> RESULT =null;
+		int arrleft = ((java_cup.runtime.Symbol)CUP$JsonParser$stack.elementAt(CUP$JsonParser$top-2)).left;
+		int arrright = ((java_cup.runtime.Symbol)CUP$JsonParser$stack.elementAt(CUP$JsonParser$top-2)).right;
+		ArrayList<Method> arr = (ArrayList<Method>)((java_cup.runtime.Symbol) CUP$JsonParser$stack.elementAt(CUP$JsonParser$top-2)).value;
+		int methodleft = ((java_cup.runtime.Symbol)CUP$JsonParser$stack.peek()).left;
+		int methodright = ((java_cup.runtime.Symbol)CUP$JsonParser$stack.peek()).right;
+		Method method = (Method)((java_cup.runtime.Symbol) CUP$JsonParser$stack.peek()).value;
+		
+                    arr.add(method);
+                    RESULT=arr;
+                
               CUP$JsonParser$result = parser.getSymbolFactory().newSymbol("list_methods",14, ((java_cup.runtime.Symbol)CUP$JsonParser$stack.elementAt(CUP$JsonParser$top-2)), ((java_cup.runtime.Symbol)CUP$JsonParser$stack.peek()), RESULT);
             }
           return CUP$JsonParser$result;
@@ -477,8 +622,13 @@ class CUP$JsonParser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 25: // method_item ::= LBRACE method_item_body RBRACE 
             {
-              Object RESULT =null;
-
+              Method RESULT =null;
+		int methodleft = ((java_cup.runtime.Symbol)CUP$JsonParser$stack.elementAt(CUP$JsonParser$top-1)).left;
+		int methodright = ((java_cup.runtime.Symbol)CUP$JsonParser$stack.elementAt(CUP$JsonParser$top-1)).right;
+		Method method = (Method)((java_cup.runtime.Symbol) CUP$JsonParser$stack.elementAt(CUP$JsonParser$top-1)).value;
+		
+                        RESULT=method;
+                    
               CUP$JsonParser$result = parser.getSymbolFactory().newSymbol("method_item",15, ((java_cup.runtime.Symbol)CUP$JsonParser$stack.elementAt(CUP$JsonParser$top-2)), ((java_cup.runtime.Symbol)CUP$JsonParser$stack.peek()), RESULT);
             }
           return CUP$JsonParser$result;
@@ -486,8 +636,20 @@ class CUP$JsonParser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 26: // method_item_body ::= name_item COMMA type_item COMMA parameters_item 
             {
-              Object RESULT =null;
-
+              Method RESULT =null;
+		int nameleft = ((java_cup.runtime.Symbol)CUP$JsonParser$stack.elementAt(CUP$JsonParser$top-4)).left;
+		int nameright = ((java_cup.runtime.Symbol)CUP$JsonParser$stack.elementAt(CUP$JsonParser$top-4)).right;
+		String name = (String)((java_cup.runtime.Symbol) CUP$JsonParser$stack.elementAt(CUP$JsonParser$top-4)).value;
+		int typeleft = ((java_cup.runtime.Symbol)CUP$JsonParser$stack.elementAt(CUP$JsonParser$top-2)).left;
+		int typeright = ((java_cup.runtime.Symbol)CUP$JsonParser$stack.elementAt(CUP$JsonParser$top-2)).right;
+		String type = (String)((java_cup.runtime.Symbol) CUP$JsonParser$stack.elementAt(CUP$JsonParser$top-2)).value;
+		int parleft = ((java_cup.runtime.Symbol)CUP$JsonParser$stack.peek()).left;
+		int parright = ((java_cup.runtime.Symbol)CUP$JsonParser$stack.peek()).right;
+		Integer par = (Integer)((java_cup.runtime.Symbol) CUP$JsonParser$stack.peek()).value;
+		
+                            Method method = new Method(name, type, par);
+                            RESULT=method;
+                        
               CUP$JsonParser$result = parser.getSymbolFactory().newSymbol("method_item_body",16, ((java_cup.runtime.Symbol)CUP$JsonParser$stack.elementAt(CUP$JsonParser$top-4)), ((java_cup.runtime.Symbol)CUP$JsonParser$stack.peek()), RESULT);
             }
           return CUP$JsonParser$result;
@@ -495,8 +657,20 @@ class CUP$JsonParser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 27: // classes_declaration ::= CLASSES_LITERAL COLON LBRACKET list_classes_opt RBRACKET 
             {
-              Object RESULT =null;
-
+              Attribute RESULT =null;
+		int listleft = ((java_cup.runtime.Symbol)CUP$JsonParser$stack.elementAt(CUP$JsonParser$top-1)).left;
+		int listright = ((java_cup.runtime.Symbol)CUP$JsonParser$stack.elementAt(CUP$JsonParser$top-1)).right;
+		ArrayList<JavaClass> list = (ArrayList<JavaClass>)((java_cup.runtime.Symbol) CUP$JsonParser$stack.elementAt(CUP$JsonParser$top-1)).value;
+		
+                                ArrayList<JavaClass> arr;
+                                if(list == null){
+                                    arr = new ArrayList();
+                                }else{
+                                    arr = list;
+                                }
+                                Attribute<ArrayList<JavaClass>> att = new Attribute(arr, Attribute.CLASSES, listleft);
+                                RESULT=att;
+                            
               CUP$JsonParser$result = parser.getSymbolFactory().newSymbol("classes_declaration",7, ((java_cup.runtime.Symbol)CUP$JsonParser$stack.elementAt(CUP$JsonParser$top-4)), ((java_cup.runtime.Symbol)CUP$JsonParser$stack.peek()), RESULT);
             }
           return CUP$JsonParser$result;
@@ -504,7 +678,7 @@ class CUP$JsonParser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 28: // list_classes_opt ::= 
             {
-              Object RESULT =null;
+              ArrayList<JavaClass> RESULT =null;
 
               CUP$JsonParser$result = parser.getSymbolFactory().newSymbol("list_classes_opt",17, ((java_cup.runtime.Symbol)CUP$JsonParser$stack.peek()), RESULT);
             }
@@ -513,8 +687,13 @@ class CUP$JsonParser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 29: // list_classes_opt ::= list_classes 
             {
-              Object RESULT =null;
-
+              ArrayList<JavaClass> RESULT =null;
+		int listleft = ((java_cup.runtime.Symbol)CUP$JsonParser$stack.peek()).left;
+		int listright = ((java_cup.runtime.Symbol)CUP$JsonParser$stack.peek()).right;
+		ArrayList<JavaClass> list = (ArrayList<JavaClass>)((java_cup.runtime.Symbol) CUP$JsonParser$stack.peek()).value;
+		
+                        RESULT=list;
+                    
               CUP$JsonParser$result = parser.getSymbolFactory().newSymbol("list_classes_opt",17, ((java_cup.runtime.Symbol)CUP$JsonParser$stack.peek()), ((java_cup.runtime.Symbol)CUP$JsonParser$stack.peek()), RESULT);
             }
           return CUP$JsonParser$result;
@@ -522,8 +701,15 @@ class CUP$JsonParser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 30: // list_classes ::= class_item 
             {
-              Object RESULT =null;
-
+              ArrayList<JavaClass> RESULT =null;
+		int java_classleft = ((java_cup.runtime.Symbol)CUP$JsonParser$stack.peek()).left;
+		int java_classright = ((java_cup.runtime.Symbol)CUP$JsonParser$stack.peek()).right;
+		JavaClass java_class = (JavaClass)((java_cup.runtime.Symbol) CUP$JsonParser$stack.peek()).value;
+		
+                    ArrayList<JavaClass> arr = new ArrayList();
+                    arr.add(java_class);
+                    RESULT=arr;
+                
               CUP$JsonParser$result = parser.getSymbolFactory().newSymbol("list_classes",18, ((java_cup.runtime.Symbol)CUP$JsonParser$stack.peek()), ((java_cup.runtime.Symbol)CUP$JsonParser$stack.peek()), RESULT);
             }
           return CUP$JsonParser$result;
@@ -531,8 +717,17 @@ class CUP$JsonParser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 31: // list_classes ::= list_classes COMMA class_item 
             {
-              Object RESULT =null;
-
+              ArrayList<JavaClass> RESULT =null;
+		int arrleft = ((java_cup.runtime.Symbol)CUP$JsonParser$stack.elementAt(CUP$JsonParser$top-2)).left;
+		int arrright = ((java_cup.runtime.Symbol)CUP$JsonParser$stack.elementAt(CUP$JsonParser$top-2)).right;
+		ArrayList<JavaClass> arr = (ArrayList<JavaClass>)((java_cup.runtime.Symbol) CUP$JsonParser$stack.elementAt(CUP$JsonParser$top-2)).value;
+		int java_classleft = ((java_cup.runtime.Symbol)CUP$JsonParser$stack.peek()).left;
+		int java_classright = ((java_cup.runtime.Symbol)CUP$JsonParser$stack.peek()).right;
+		JavaClass java_class = (JavaClass)((java_cup.runtime.Symbol) CUP$JsonParser$stack.peek()).value;
+		
+                    arr.add(java_class);
+                    RESULT=arr;
+                
               CUP$JsonParser$result = parser.getSymbolFactory().newSymbol("list_classes",18, ((java_cup.runtime.Symbol)CUP$JsonParser$stack.elementAt(CUP$JsonParser$top-2)), ((java_cup.runtime.Symbol)CUP$JsonParser$stack.peek()), RESULT);
             }
           return CUP$JsonParser$result;
@@ -540,8 +735,13 @@ class CUP$JsonParser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 32: // class_item ::= LBRACE class_item_body RBRACE 
             {
-              Object RESULT =null;
-
+              JavaClass RESULT =null;
+		int java_classleft = ((java_cup.runtime.Symbol)CUP$JsonParser$stack.elementAt(CUP$JsonParser$top-1)).left;
+		int java_classright = ((java_cup.runtime.Symbol)CUP$JsonParser$stack.elementAt(CUP$JsonParser$top-1)).right;
+		JavaClass java_class = (JavaClass)((java_cup.runtime.Symbol) CUP$JsonParser$stack.elementAt(CUP$JsonParser$top-1)).value;
+		
+                        RESULT=java_class;
+                    
               CUP$JsonParser$result = parser.getSymbolFactory().newSymbol("class_item",19, ((java_cup.runtime.Symbol)CUP$JsonParser$stack.elementAt(CUP$JsonParser$top-2)), ((java_cup.runtime.Symbol)CUP$JsonParser$stack.peek()), RESULT);
             }
           return CUP$JsonParser$result;
@@ -549,8 +749,14 @@ class CUP$JsonParser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 33: // class_item_body ::= name_item 
             {
-              Object RESULT =null;
-
+              JavaClass RESULT =null;
+		int nameleft = ((java_cup.runtime.Symbol)CUP$JsonParser$stack.peek()).left;
+		int nameright = ((java_cup.runtime.Symbol)CUP$JsonParser$stack.peek()).right;
+		String name = (String)((java_cup.runtime.Symbol) CUP$JsonParser$stack.peek()).value;
+		
+                            JavaClass jc = new JavaClass(name);
+                            RESULT = jc;
+                        
               CUP$JsonParser$result = parser.getSymbolFactory().newSymbol("class_item_body",20, ((java_cup.runtime.Symbol)CUP$JsonParser$stack.peek()), ((java_cup.runtime.Symbol)CUP$JsonParser$stack.peek()), RESULT);
             }
           return CUP$JsonParser$result;
@@ -558,8 +764,20 @@ class CUP$JsonParser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 34: // comments_declaration ::= COMMENTS_LITERAL COLON LBRACKET list_comments_opt RBRACKET 
             {
-              Object RESULT =null;
-
+              Attribute RESULT =null;
+		int listleft = ((java_cup.runtime.Symbol)CUP$JsonParser$stack.elementAt(CUP$JsonParser$top-1)).left;
+		int listright = ((java_cup.runtime.Symbol)CUP$JsonParser$stack.elementAt(CUP$JsonParser$top-1)).right;
+		ArrayList<Comment> list = (ArrayList<Comment>)((java_cup.runtime.Symbol) CUP$JsonParser$stack.elementAt(CUP$JsonParser$top-1)).value;
+		
+                                ArrayList<Comment> arr;
+                                if(list == null){
+                                    arr = new ArrayList();
+                                }else{
+                                    arr = list;
+                                }
+                                Attribute<ArrayList<Comment>> att = new Attribute(arr, Attribute.COMMENTS, listleft);
+                                RESULT=att;
+                        
               CUP$JsonParser$result = parser.getSymbolFactory().newSymbol("comments_declaration",8, ((java_cup.runtime.Symbol)CUP$JsonParser$stack.elementAt(CUP$JsonParser$top-4)), ((java_cup.runtime.Symbol)CUP$JsonParser$stack.peek()), RESULT);
             }
           return CUP$JsonParser$result;
@@ -567,7 +785,7 @@ class CUP$JsonParser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 35: // list_comments_opt ::= 
             {
-              Object RESULT =null;
+              ArrayList<Comment> RESULT =null;
 
               CUP$JsonParser$result = parser.getSymbolFactory().newSymbol("list_comments_opt",21, ((java_cup.runtime.Symbol)CUP$JsonParser$stack.peek()), RESULT);
             }
@@ -576,8 +794,13 @@ class CUP$JsonParser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 36: // list_comments_opt ::= list_comments 
             {
-              Object RESULT =null;
-
+              ArrayList<Comment> RESULT =null;
+		int listleft = ((java_cup.runtime.Symbol)CUP$JsonParser$stack.peek()).left;
+		int listright = ((java_cup.runtime.Symbol)CUP$JsonParser$stack.peek()).right;
+		ArrayList<Comment> list = (ArrayList<Comment>)((java_cup.runtime.Symbol) CUP$JsonParser$stack.peek()).value;
+		
+                        RESULT=list;
+                    
               CUP$JsonParser$result = parser.getSymbolFactory().newSymbol("list_comments_opt",21, ((java_cup.runtime.Symbol)CUP$JsonParser$stack.peek()), ((java_cup.runtime.Symbol)CUP$JsonParser$stack.peek()), RESULT);
             }
           return CUP$JsonParser$result;
@@ -585,8 +808,15 @@ class CUP$JsonParser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 37: // list_comments ::= comment_item 
             {
-              Object RESULT =null;
-
+              ArrayList<Comment> RESULT =null;
+		int commentleft = ((java_cup.runtime.Symbol)CUP$JsonParser$stack.peek()).left;
+		int commentright = ((java_cup.runtime.Symbol)CUP$JsonParser$stack.peek()).right;
+		Comment comment = (Comment)((java_cup.runtime.Symbol) CUP$JsonParser$stack.peek()).value;
+		
+                    ArrayList<Comment> arr = new ArrayList();
+                    arr.add(comment);
+                    RESULT=arr;
+                
               CUP$JsonParser$result = parser.getSymbolFactory().newSymbol("list_comments",22, ((java_cup.runtime.Symbol)CUP$JsonParser$stack.peek()), ((java_cup.runtime.Symbol)CUP$JsonParser$stack.peek()), RESULT);
             }
           return CUP$JsonParser$result;
@@ -594,8 +824,17 @@ class CUP$JsonParser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 38: // list_comments ::= list_comments COMMA comment_item 
             {
-              Object RESULT =null;
-
+              ArrayList<Comment> RESULT =null;
+		int arrleft = ((java_cup.runtime.Symbol)CUP$JsonParser$stack.elementAt(CUP$JsonParser$top-2)).left;
+		int arrright = ((java_cup.runtime.Symbol)CUP$JsonParser$stack.elementAt(CUP$JsonParser$top-2)).right;
+		ArrayList<Comment> arr = (ArrayList<Comment>)((java_cup.runtime.Symbol) CUP$JsonParser$stack.elementAt(CUP$JsonParser$top-2)).value;
+		int commentleft = ((java_cup.runtime.Symbol)CUP$JsonParser$stack.peek()).left;
+		int commentright = ((java_cup.runtime.Symbol)CUP$JsonParser$stack.peek()).right;
+		Comment comment = (Comment)((java_cup.runtime.Symbol) CUP$JsonParser$stack.peek()).value;
+		
+                    arr.add(comment);
+                    RESULT=arr;
+                
               CUP$JsonParser$result = parser.getSymbolFactory().newSymbol("list_comments",22, ((java_cup.runtime.Symbol)CUP$JsonParser$stack.elementAt(CUP$JsonParser$top-2)), ((java_cup.runtime.Symbol)CUP$JsonParser$stack.peek()), RESULT);
             }
           return CUP$JsonParser$result;
@@ -603,8 +842,13 @@ class CUP$JsonParser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 39: // comment_item ::= LBRACE comment_item_body RBRACE 
             {
-              Object RESULT =null;
-
+              Comment RESULT =null;
+		int commentleft = ((java_cup.runtime.Symbol)CUP$JsonParser$stack.elementAt(CUP$JsonParser$top-1)).left;
+		int commentright = ((java_cup.runtime.Symbol)CUP$JsonParser$stack.elementAt(CUP$JsonParser$top-1)).right;
+		Comment comment = (Comment)((java_cup.runtime.Symbol) CUP$JsonParser$stack.elementAt(CUP$JsonParser$top-1)).value;
+		
+                        RESULT=comment;
+                    
               CUP$JsonParser$result = parser.getSymbolFactory().newSymbol("comment_item",23, ((java_cup.runtime.Symbol)CUP$JsonParser$stack.elementAt(CUP$JsonParser$top-2)), ((java_cup.runtime.Symbol)CUP$JsonParser$stack.peek()), RESULT);
             }
           return CUP$JsonParser$result;
@@ -612,8 +856,14 @@ class CUP$JsonParser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 40: // comment_item_body ::= text_item 
             {
-              Object RESULT =null;
-
+              Comment RESULT =null;
+		int textleft = ((java_cup.runtime.Symbol)CUP$JsonParser$stack.peek()).left;
+		int textright = ((java_cup.runtime.Symbol)CUP$JsonParser$stack.peek()).right;
+		String text = (String)((java_cup.runtime.Symbol) CUP$JsonParser$stack.peek()).value;
+		
+                            Comment comment = new Comment(text);
+                            RESULT=comment;
+                        
               CUP$JsonParser$result = parser.getSymbolFactory().newSymbol("comment_item_body",24, ((java_cup.runtime.Symbol)CUP$JsonParser$stack.peek()), ((java_cup.runtime.Symbol)CUP$JsonParser$stack.peek()), RESULT);
             }
           return CUP$JsonParser$result;
@@ -621,8 +871,13 @@ class CUP$JsonParser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 41: // name_item ::= NAME_LITERAL COLON STRING_LITERAL 
             {
-              Object RESULT =null;
-
+              String RESULT =null;
+		int stleft = ((java_cup.runtime.Symbol)CUP$JsonParser$stack.peek()).left;
+		int stright = ((java_cup.runtime.Symbol)CUP$JsonParser$stack.peek()).right;
+		String st = (String)((java_cup.runtime.Symbol) CUP$JsonParser$stack.peek()).value;
+		
+                    RESULT=st;
+                
               CUP$JsonParser$result = parser.getSymbolFactory().newSymbol("name_item",25, ((java_cup.runtime.Symbol)CUP$JsonParser$stack.elementAt(CUP$JsonParser$top-2)), ((java_cup.runtime.Symbol)CUP$JsonParser$stack.peek()), RESULT);
             }
           return CUP$JsonParser$result;
@@ -630,8 +885,13 @@ class CUP$JsonParser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 42: // type_item ::= TYPE_LITERAL COLON STRING_LITERAL 
             {
-              Object RESULT =null;
-
+              String RESULT =null;
+		int stleft = ((java_cup.runtime.Symbol)CUP$JsonParser$stack.peek()).left;
+		int stright = ((java_cup.runtime.Symbol)CUP$JsonParser$stack.peek()).right;
+		String st = (String)((java_cup.runtime.Symbol) CUP$JsonParser$stack.peek()).value;
+		
+                    RESULT=st;
+                
               CUP$JsonParser$result = parser.getSymbolFactory().newSymbol("type_item",26, ((java_cup.runtime.Symbol)CUP$JsonParser$stack.elementAt(CUP$JsonParser$top-2)), ((java_cup.runtime.Symbol)CUP$JsonParser$stack.peek()), RESULT);
             }
           return CUP$JsonParser$result;
@@ -639,8 +899,13 @@ class CUP$JsonParser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 43: // function_item ::= FUNCTION_LITERAL COLON STRING_LITERAL 
             {
-              Object RESULT =null;
-
+              String RESULT =null;
+		int stleft = ((java_cup.runtime.Symbol)CUP$JsonParser$stack.peek()).left;
+		int stright = ((java_cup.runtime.Symbol)CUP$JsonParser$stack.peek()).right;
+		String st = (String)((java_cup.runtime.Symbol) CUP$JsonParser$stack.peek()).value;
+		
+                    RESULT=st;
+                
               CUP$JsonParser$result = parser.getSymbolFactory().newSymbol("function_item",27, ((java_cup.runtime.Symbol)CUP$JsonParser$stack.elementAt(CUP$JsonParser$top-2)), ((java_cup.runtime.Symbol)CUP$JsonParser$stack.peek()), RESULT);
             }
           return CUP$JsonParser$result;
@@ -648,8 +913,13 @@ class CUP$JsonParser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 44: // parameters_item ::= PARAMETERS_LITERAL COLON INTEGER_LITERAL 
             {
-              Object RESULT =null;
-
+              Integer RESULT =null;
+		int int_literalleft = ((java_cup.runtime.Symbol)CUP$JsonParser$stack.peek()).left;
+		int int_literalright = ((java_cup.runtime.Symbol)CUP$JsonParser$stack.peek()).right;
+		Integer int_literal = (Integer)((java_cup.runtime.Symbol) CUP$JsonParser$stack.peek()).value;
+		
+                    RESULT=int_literal;
+                
               CUP$JsonParser$result = parser.getSymbolFactory().newSymbol("parameters_item",28, ((java_cup.runtime.Symbol)CUP$JsonParser$stack.elementAt(CUP$JsonParser$top-2)), ((java_cup.runtime.Symbol)CUP$JsonParser$stack.peek()), RESULT);
             }
           return CUP$JsonParser$result;
@@ -657,8 +927,13 @@ class CUP$JsonParser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 45: // text_item ::= TEXT_LITERAL COLON STRING_LITERAL 
             {
-              Object RESULT =null;
-
+              String RESULT =null;
+		int stleft = ((java_cup.runtime.Symbol)CUP$JsonParser$stack.peek()).left;
+		int stright = ((java_cup.runtime.Symbol)CUP$JsonParser$stack.peek()).right;
+		String st = (String)((java_cup.runtime.Symbol) CUP$JsonParser$stack.peek()).value;
+		
+                    RESULT=st;
+                
               CUP$JsonParser$result = parser.getSymbolFactory().newSymbol("text_item",29, ((java_cup.runtime.Symbol)CUP$JsonParser$stack.elementAt(CUP$JsonParser$top-2)), ((java_cup.runtime.Symbol)CUP$JsonParser$stack.peek()), RESULT);
             }
           return CUP$JsonParser$result;
