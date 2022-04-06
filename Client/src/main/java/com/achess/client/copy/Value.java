@@ -9,7 +9,7 @@ package com.achess.client.copy;
  */
 public class Value {
     public static final int INTEGER = 0;
-    public static final int STRING = 1;
+    public static final int STRING = 1;    
     public static final int ERROR = -1;
     private String value;
     private int type;
@@ -39,6 +39,10 @@ public class Value {
     public void setType(int type) {
         this.type = type;
     }
-    
+
+    @Override
+    public String toString() {
+        return value;
+    }    
     
 }

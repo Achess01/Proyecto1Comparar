@@ -31,6 +31,9 @@ public class ParseCopy {
     public static void run(){
         clear();
         parse("Test");
+        if(!ClientError.getError().isErrorFounded()){
+            System.out.println(getCopy());
+        }
     }
     
     private static void parse(String file1){    
@@ -59,22 +62,25 @@ public class ParseCopy {
     
     private HashMap<String, CopyVariable> symbolTable;
     private ParseCopy(){
-        symbolTable = null;
+        symbolTable = new HashMap();
     }
     
-    
-    
-    public void addVariable(String name, int type){
-        symbolTable.put(name, new CopyVariable(name, type));
+    public CopyVariable getVariable(String name){
+        return symbolTable.get(name);
     }
     
-    public void addVariable(String name, int type, Operation operation){
+    public void addVariable(CopyVariable variable){
+        symbolTable.put(variable.getName(), variable);
+    }
+    
+    public void addVariable(CopyVariable variable, Operation operation){
         Value val = operation.run();
-        if(val == null || val.getType() != type){
+        if(val == null || val.getType() != variable.getType()){
             ClientError.getError().log("COPY\nEl tipo de la variable no coincide el valor. ln:" + operation.getLine());
         }
         else{
-            symbolTable.put(name, new CopyVariable(name, type, val));
+            variable.setValue(val);
+            symbolTable.put(variable.getName(), variable);
         }        
     }
     
@@ -86,11 +92,17 @@ public class ParseCopy {
         else{
             Value val = operation.run();
             if(val == null || val.getType() != variable.getType()){
-                ClientError.getError().log("COPY\nEl tipo de la variable no coincide el valor. ln:" + operation.getLine());
+                ClientError.getError().log("COPY\nEl tipo de la variable no coincide con el valor. ln:" + operation.getLine());
             }
             else{
                 variable.setValue(val);
             }
         }
     }
+
+    @Override
+    public String toString() {
+        return "ParseCopy{" + "symbolTable=" + symbolTable + '}';
+    }
+        
 }

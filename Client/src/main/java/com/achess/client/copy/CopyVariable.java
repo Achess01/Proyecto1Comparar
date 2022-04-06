@@ -11,11 +11,12 @@ public class CopyVariable {
     private String name;
     private int type;
     private Value value;
+    public Operation op;
 
-    public CopyVariable(String name, int type, Value value) {
+    public CopyVariable(String name, int type, Operation op) {
         this.name = name;
         this.type = type;
-        this.value = value;
+        this.op = op;
     }
 
     public CopyVariable(String name, int type) {
@@ -44,8 +45,14 @@ public class CopyVariable {
     }
 
     public void setValue(Value value) {
+        this.op = null;
         this.value = value;
     }
+
+    @Override
+    public String toString() {
+        return "CopyVariable{" + "name=" + name + ", type=" + type + ", value=" + value + '}';
+    }
     
-    
+        
 }

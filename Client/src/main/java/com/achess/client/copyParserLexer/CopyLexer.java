@@ -1174,7 +1174,7 @@ public class CopyLexer implements java_cup.runtime.Scanner {
             // fall through
           case 79: break;
           case 14:
-            { return symbol(sym.INTEGER_LITERAL, Integer.valueOf(yytext()));
+            { return symbol(sym.INTEGER_LITERAL, yytext());
             }
             // fall through
           case 80: break;
