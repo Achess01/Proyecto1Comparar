@@ -1339,7 +1339,7 @@ public class CopyLexer implements java_cup.runtime.Scanner {
             // fall through
           case 112: break;
           case 47:
-            { return symbol(sym.TIPO);
+            { return symbol(sym.TIPO, yytext());
             }
             // fall through
           case 113: break;
@@ -1359,12 +1359,12 @@ public class CopyLexer implements java_cup.runtime.Scanner {
             // fall through
           case 116: break;
           case 51:
-            { return symbol(sym.SCORE);
+            { return symbol(sym.SCORE, yytext());
             }
             // fall through
           case 117: break;
           case 52:
-            { return symbol(sym.TEXTO_COMENTARIO);
+            { return symbol(sym.TEXTO_COMENTARIO, yytext());
             }
             // fall through
           case 118: break;
@@ -1379,12 +1379,12 @@ public class CopyLexer implements java_cup.runtime.Scanner {
             // fall through
           case 120: break;
           case 55:
-            { return symbol(sym.CLASES);
+            { return symbol(sym.CLASES, yytext());
             }
             // fall through
           case 121: break;
           case 56:
-            { return symbol(sym.NOMBRE);
+            { return symbol(sym.NOMBRE, yytext());
             }
             // fall through
           case 122: break;
@@ -1404,7 +1404,7 @@ public class CopyLexer implements java_cup.runtime.Scanner {
             // fall through
           case 125: break;
           case 60:
-            { return symbol(sym.FUNCION);
+            { return symbol(sym.FUNCION, yytext());
             }
             // fall through
           case 126: break;
@@ -1414,7 +1414,7 @@ public class CopyLexer implements java_cup.runtime.Scanner {
             // fall through
           case 127: break;
           case 62:
-            { return symbol(sym.METODOS);
+            { return symbol(sym.METODOS, yytext());
             }
             // fall through
           case 128: break;
@@ -1424,17 +1424,17 @@ public class CopyLexer implements java_cup.runtime.Scanner {
             // fall through
           case 129: break;
           case 64:
-            { return symbol(sym.VARIABLES);
+            { return symbol(sym.VARIABLES, yytext());
             }
             // fall through
           case 130: break;
           case 65:
-            { return symbol(sym.PARAMETROS);
+            { return symbol(sym.PARAMETROS, yytext());
             }
             // fall through
           case 131: break;
           case 66:
-            { return symbol(sym.COMENTARIOS);
+            { return symbol(sym.COMENTARIOS, yytext());
             }
             // fall through
           case 132: break;

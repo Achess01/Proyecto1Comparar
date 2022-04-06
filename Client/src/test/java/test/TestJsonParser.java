@@ -3,6 +3,7 @@
  */
 package test;
 
+import com.achess.client.error.ClientError;
 import com.achess.client.jsonParserLexer.JsonLexer;
 import com.achess.client.jsonParserLexer.JsonParser;
 import java.io.FileInputStream;
@@ -25,6 +26,7 @@ public class TestJsonParser {
             Reader reader = new InputStreamReader(stream);            
             JsonLexer lexer = new JsonLexer(reader);                
             JsonParser parser = new JsonParser(lexer);             
+            ClientError.reset();
             try{                
                 parser.parse();
             }
