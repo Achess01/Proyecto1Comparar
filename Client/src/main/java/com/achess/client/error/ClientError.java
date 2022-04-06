@@ -7,13 +7,13 @@ package com.achess.client.error;
  *
  * @author achess
  */
-public class Error {
-    private static Error error;
+public class ClientError {
+    private static ClientError error;
     private boolean errorFounded;
     
-    public static Error getError(){
+    public static ClientError getError(){
         if(error == null){
-            error = new Error();
+            error = new ClientError();
         }
         return error;
     }
@@ -22,7 +22,7 @@ public class Error {
         getError().errorFounded = false;
     }
     
-    private Error(){
+    private ClientError(){
         errorFounded = false;
     }
     

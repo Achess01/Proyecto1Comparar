@@ -4,6 +4,7 @@
 
 package com.achess.client.jsonParserLexer;
 import java_cup.runtime.Symbol;
+import com.achess.client.error.ClientError;
 
 // See https://github.com/jflex-de/jflex/issues/222
 @SuppressWarnings("FallThrough")
@@ -743,7 +744,7 @@ public class JsonLexer implements java_cup.runtime.Scanner {
       else {
         switch (zzAction < 0 ? zzAction : ZZ_ACTION[zzAction]) {
           case 1:
-            { System.out.println("Illegal character \""+yytext()+
+            { ClientError.getError().log("Illegal character \""+yytext()+
                                                               "\" at line "+yyline+", column "+yycolumn);
             }
             // fall through
@@ -799,7 +800,7 @@ public class JsonLexer implements java_cup.runtime.Scanner {
             // fall through
           case 43: break;
           case 12:
-            { System.out.println("Unterminated string at end of line");
+            { ClientError.getError().log("Unterminated string at end of line");
             }
             // fall through
           case 44: break;
@@ -809,7 +810,7 @@ public class JsonLexer implements java_cup.runtime.Scanner {
             // fall through
           case 45: break;
           case 14:
-            { System.out.println("Illegal escape sequence \""+yytext()+"\"");
+            { ClientError.getError().log("Illegal escape sequence \""+yytext()+"\"");
             }
             // fall through
           case 46: break;

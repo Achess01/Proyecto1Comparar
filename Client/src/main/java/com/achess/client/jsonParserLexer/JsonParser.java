@@ -13,7 +13,7 @@ import com.achess.client.jsonMembers.JavaClass;
 import com.achess.client.jsonMembers.Method;
 import com.achess.client.jsonMembers.Score;
 import com.achess.client.jsonMembers.Variable;
-import com.achess.client.error.Error;
+import com.achess.client.error.ClientError;
 import java.util.ArrayList;
 import java_cup.runtime.XMLElement;
 
@@ -217,13 +217,13 @@ public class JsonParser extends java_cup.runtime.lr_parser {
 		}
         des = des.substring(0, des.length() - 3);
 
-		Error.getError().log("Error sintáctico ln:"+line+" col:"+column+ " " +lexeme + "\n");		
-		if(count) Error.getError().log(des+"\n");
+		ClientError.getError().log("Error sintáctico ln:"+line+" col:"+column+ " " +lexeme + "\n");		
+		if(count) ClientError.getError().log(des+"\n");
 	}
 
     public void report_fatal_error(String message, Object info) {
-		Error.getError().log("Message: " + message);
-		Error.getError().log("Info: " + info.toString());		
+		ClientError.getError().log("Message: " + message);
+		ClientError.getError().log("Info: " + info.toString());		
 	}
     
 
@@ -283,7 +283,7 @@ class CUP$JsonParser$actions {
 		int bodyright = ((java_cup.runtime.Symbol)CUP$JsonParser$stack.elementAt(CUP$JsonParser$top-1)).right;
 		ArrayList<Attribute> body = (ArrayList<Attribute>)((java_cup.runtime.Symbol) CUP$JsonParser$stack.elementAt(CUP$JsonParser$top-1)).value;
 		
-                        if(!Error.getError().isErrorFounded()){
+                        if(!ClientError.getError().isErrorFounded()){
                             ValidateJson.validate(body);
                         }
                     
