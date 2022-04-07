@@ -20,9 +20,8 @@ public class H1Tag extends NoTag{
         
     
     @Override
-    public String run() {
-        super.run();        
-        return "<h1>" + value + "</h1>";
+    public String run() {                
+        return "<h1>" + super.run() + "</h1>";
     }
     
 }

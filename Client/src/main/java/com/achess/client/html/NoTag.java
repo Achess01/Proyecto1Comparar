@@ -19,36 +19,46 @@ public class NoTag implements HtmlElement{
         this.value = value;
         this.identifier = identifier;
     }
+
+    public String getValue() {
+        return value;
+    }
+
+    public boolean isIdentifier() {
+        return identifier;
+    }
+    
     
             
     @Override
     public String run() {
-        if(identifier){
+        String newVar = value;
+        if(identifier){            
             String vname[] = value.split(",");  
-            if(vname.length == 2){
+            if(vname.length == 2){                
                 if(isNumber(vname[1])){
                     CopyVariable v = ParseCopy.getCopy().getVariable(vname[0] + vname[1]);
-                    value = vname[0] + vname[1];
+                    newVar = vname[0] + vname[1];
                 }else{
                     CopyVariable variable = ParseCopy.getCopy().getVariable(vname[1]);                    
-                    value = vname[0] + variable.getValue().getValue();
-                } 
+                    newVar = vname[0] + variable.getValue().getValue();                    
+                }                 
             }                                    
-            CopyVariable v = ParseCopy.getCopy().getVariable(value);
+            CopyVariable v = ParseCopy.getCopy().getVariable(newVar);
             if(v == null){
-                ClientError.getError().log("COPY\nLa variable " + value + " no existe");
-                value = "";
+                ClientError.getError().log("COPY\nLa variable " + newVar + " no existe");     
+                newVar="";
             }
             else if(v.getValue() == null){
-                ClientError.getError().log("COPY\n" + value + " No tiene ningún valor");  
-                value="";
+                ClientError.getError().log("COPY\n" + value + " No tiene ningún valor");                  
+                newVar="";
             }
             else{
-                value = v.getValue().getValue();
-            }   
+                newVar = v.getValue().getValue();
+            }               
         }
         
-        return value;
+        return newVar;
     }
     
 }

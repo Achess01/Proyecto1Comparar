@@ -10,6 +10,7 @@ import com.achess.client.jsonMembers.Method;
 import com.achess.client.jsonMembers.Score;
 import com.achess.client.jsonMembers.Variable;
 import com.achess.client.error.ClientError;
+import com.achess.client.html.HtmlMain;
 import com.achess.client.result.Result;
 import java.util.ArrayList;
 
@@ -76,6 +77,7 @@ public class ValidateJson {
         
         if(!error){
             ParseCopy.clear();
+            HtmlMain.clear();
             Result.set(score, classes, methods, variables, comments);            
             ParseCopy.run();
         }

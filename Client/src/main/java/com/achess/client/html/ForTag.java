@@ -5,6 +5,7 @@ package com.achess.client.html;
 
 import java.util.ArrayList;
 import com.achess.client.copy.*;
+import com.achess.client.error.*;
 
 /**
  *
@@ -24,22 +25,27 @@ public class ForTag implements HtmlElement{
     @Override
     public String run() {
         StringBuilder sb = new StringBuilder();
-        CopyVariable vI = ParseCopy.getCopy().getVariable(iterador);
-        CopyVariable vH = ParseCopy.getCopy().getVariable(iterador);     
-        Integer actualValue = vI.getValue().getIntegerValue();
-        if(actualValue <= vH.getValue().getIntegerValue()){
-            while(vI.getValue().getIntegerValue() <= vH.getValue().getIntegerValue()){
-                for(HtmlElement e: elements){
-                    sb.append(e.run());
-                    sb.append('\n');
-                }
-                actualValue++;
-                vI.getValue().setValue(actualValue.toString());
-                actualValue = vI.getValue().getIntegerValue();
-            }
+        if(isNumber(iterador) ||  isNumber(hasta)){
+            ClientError.getError().log("Copy\nLos iteradores del for deben de ser variables");
         }else{
-            sb.append("Loop infinito no ejecutado");
-        }                        
+            CopyVariable vI = ParseCopy.getCopy().getVariable(iterador);
+            CopyVariable vH = ParseCopy.getCopy().getVariable(hasta);                   
+            Integer actualValue = vI.getValue().getIntegerValue();        
+            if(actualValue <= vH.getValue().getIntegerValue()){
+                while(vI.getValue().getIntegerValue() <= vH.getValue().getIntegerValue()){
+                    for(HtmlElement e: elements){
+                        sb.append(e.run());
+                        sb.append('\n');
+                    }
+                    actualValue++;
+                    vI.getValue().setValue(actualValue.toString());
+                    actualValue = vI.getValue().getIntegerValue();
+                }
+            }else{
+                sb.append("Loop infinito no ejecutado");
+            }             
+        }
+                          
         return sb.toString();
     }
     

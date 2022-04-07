@@ -15,8 +15,7 @@ public class H2Tag extends NoTag{
     
         
     @Override
-    public String run() {
-        super.run();
-        return "<h2>" + value + "</h2>";
+    public String run() {        
+        return "<h2>" + super.run() + "</h2>";
     }
 }

@@ -26,9 +26,15 @@ public class TableTag implements HtmlElement{
     }
     
     @Override
-    public String run() {
-        
-        return "<table>" + getElementsHtml() + "</table>";
+    public String run() {        
+        return "<table>\n" + getElementsHtml() + "</table>";
     }
+
+    @Override
+    public String toString() {
+        return "TableTag{" + "elements=" + elements + '}';
+    }
+    
+    
     
 }

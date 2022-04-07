@@ -29,10 +29,7 @@ public class ParseCopy {
     }
     
     public static void run(){        
-        parse("Test");
-        if(!ClientError.getError().isErrorFounded()){
-            System.out.println(getCopy());            
-        }
+        parse("Test");        
     }
     
     private static void parse(String file1){    

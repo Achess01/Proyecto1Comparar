@@ -17,6 +17,6 @@ public class TrTag extends TableTag{
     
      @Override
     public String run() {        
-        return "<tr>" + getElementsHtml() + "</tr>";
+        return "<tr>\n" + getElementsHtml() + "</tr>";
     }
 }
