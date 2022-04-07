@@ -51,9 +51,9 @@ public class CopyParser extends java_cup.runtime.lr_parser {
     "\023\003\000\002\023\003\000\002\015\010\000\002\024" +
     "\003\000\002\024\003\000\002\024\003\000\002\020\010" +
     "\000\002\027\003\000\002\027\003\000\002\030\003\000" +
-    "\002\030\003\000\002\030\003\000\002\031\005\000\002" +
-    "\031\005\000\002\031\003\000\002\032\005\000\002\032" +
-    "\005\000\002\032\003\000\002\033\003\000\002\033\003" +
+    "\002\030\003\000\002\031\005\000\002\031\005\000\002" +
+    "\031\003\000\002\032\005\000\002\032\005\000\002\032" +
+    "\003\000\002\033\003\000\002\033\003\000\002\033\003" +
     "\000\002\033\005\000\002\033\004\000\002\077\004\000" +
     "\002\100\004\000\002\101\004\000\002\102\004\000\002" +
     "\103\004\000\002\104\004\000\002\105\004\000\002\106" +
@@ -175,23 +175,23 @@ public class CopyParser extends java_cup.runtime.lr_parser {
     "\004\060\031\001\002\000\042\031\042\032\034\033\010" +
     "\035\043\036\011\037\023\040\006\041\016\042\017\043" +
     "\013\044\026\045\020\046\021\047\005\050\033\062\040" +
-    "\001\002\000\020\051\uffc9\054\uffc9\056\uffc9\061\uffc9\062" +
-    "\uffc9\063\uffc9\064\uffc9\001\002\000\042\031\042\032\034" +
+    "\001\002\000\020\051\uffca\054\uffca\056\uffca\061\uffca\062" +
+    "\uffca\063\uffca\064\uffca\001\002\000\042\031\042\032\034" +
     "\033\010\035\043\036\011\037\023\040\006\041\016\042" +
     "\017\043\013\044\026\045\020\046\021\047\005\050\033" +
     "\062\040\001\002\000\020\051\uffd2\054\uffd2\056\uffd2\061" +
     "\uffd2\062\uffd2\063\uffd2\064\uffd2\001\002\000\012\054\uffed" +
-    "\056\uffed\061\123\062\124\001\002\000\020\051\uffca\054" +
-    "\uffca\056\uffca\061\uffca\062\uffca\063\uffca\064\uffca\001\002" +
-    "\000\020\051\uffcd\054\uffcd\056\uffcd\061\uffcd\062\uffcd\063" +
+    "\056\uffed\061\123\062\124\001\002\000\020\051\uffcb\054" +
+    "\uffcb\056\uffcb\061\uffcb\062\uffcb\063\uffcb\064\uffcb\001\002" +
+    "\000\020\051\uffce\054\uffce\056\uffce\061\uffce\062\uffce\063" +
     "\117\064\120\001\002\000\042\031\042\032\034\033\010" +
     "\035\043\036\011\037\023\040\006\041\016\042\017\043" +
     "\013\044\026\045\020\046\021\047\005\050\033\062\040" +
-    "\001\002\000\020\051\uffd1\054\uffd1\056\uffd1\061\uffd1\062" +
-    "\uffd1\063\uffd1\064\uffd1\001\002\000\020\051\uffd0\054\uffd0" +
-    "\056\uffd0\061\uffd0\062\uffd0\063\uffd0\064\uffd0\001\002\000" +
-    "\004\057\045\001\002\000\020\051\uffc8\054\uffc8\056\uffc8" +
-    "\061\uffc8\062\uffc8\063\uffc8\064\uffc8\001\002\000\014\036" +
+    "\001\002\000\020\051\uffc8\054\uffc8\056\uffc8\061\uffc8\062" +
+    "\uffc8\063\uffc8\064\uffc8\001\002\000\020\051\uffd1\054\uffd1" +
+    "\056\uffd1\061\uffd1\062\uffd1\063\uffd1\064\uffd1\001\002\000" +
+    "\004\057\045\001\002\000\020\051\uffc9\054\uffc9\056\uffc9" +
+    "\061\uffc9\062\uffc9\063\uffc9\064\uffc9\001\002\000\014\036" +
     "\060\037\051\040\054\041\052\042\055\001\002\000\020" +
     "\051\uffe1\054\uffe1\056\uffe1\061\uffe1\062\uffe1\063\uffe1\064" +
     "\uffe1\001\002\000\020\051\uffe3\054\uffe3\056\uffe3\061\uffe3" +
@@ -243,17 +243,17 @@ public class CopyParser extends java_cup.runtime.lr_parser {
     "\002\000\042\031\042\032\034\033\010\035\043\036\011" +
     "\037\023\040\006\041\016\042\017\043\013\044\026\045" +
     "\020\046\021\047\005\050\033\062\040\001\002\000\020" +
-    "\051\uffcb\054\uffcb\056\uffcb\061\uffcb\062\uffcb\063\uffcb\064" +
-    "\uffcb\001\002\000\020\051\uffcc\054\uffcc\056\uffcc\061\uffcc" +
-    "\062\uffcc\063\uffcc\064\uffcc\001\002\000\042\031\042\032" +
+    "\051\uffcc\054\uffcc\056\uffcc\061\uffcc\062\uffcc\063\uffcc\064" +
+    "\uffcc\001\002\000\020\051\uffcd\054\uffcd\056\uffcd\061\uffcd" +
+    "\062\uffcd\063\uffcd\064\uffcd\001\002\000\042\031\042\032" +
     "\034\033\010\035\043\036\011\037\023\040\006\041\016" +
     "\042\017\043\013\044\026\045\020\046\021\047\005\050" +
     "\033\062\040\001\002\000\042\031\042\032\034\033\010" +
     "\035\043\036\011\037\023\040\006\041\016\042\017\043" +
     "\013\044\026\045\020\046\021\047\005\050\033\062\040" +
-    "\001\002\000\020\051\uffce\054\uffce\056\uffce\061\uffce\062" +
-    "\uffce\063\117\064\120\001\002\000\020\051\uffcf\054\uffcf" +
-    "\056\uffcf\061\uffcf\062\uffcf\063\117\064\120\001\002\000" +
+    "\001\002\000\020\051\uffcf\054\uffcf\056\uffcf\061\uffcf\062" +
+    "\uffcf\063\117\064\120\001\002\000\020\051\uffd0\054\uffd0" +
+    "\056\uffd0\061\uffd0\062\uffd0\063\117\064\120\001\002\000" +
     "\010\051\130\061\123\062\124\001\002\000\020\051\uffc7" +
     "\054\uffc7\056\uffc7\061\uffc7\062\uffc7\063\uffc7\064\uffc7\001" +
     "\002\000\052\005\147\006\154\007\155\010\162\024\150" +
@@ -1030,21 +1030,20 @@ class CUP$CopyParser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 25: // integer_value ::= name 
             {
-              Integer RESULT =null;
+              String RESULT =null;
 		int stleft = ((java_cup.runtime.Symbol)CUP$CopyParser$stack.peek()).left;
 		int stright = ((java_cup.runtime.Symbol)CUP$CopyParser$stack.peek()).right;
 		String st = (String)((java_cup.runtime.Symbol) CUP$CopyParser$stack.peek()).value;
 		
-                CopyVariable v = ParseCopy.getCopy().getVariable(st);
-                RESULT=null;  
+                CopyVariable v = ParseCopy.getCopy().getVariable(st);                
                 if(v == null) ClientError.getError().log("COPY\nLa variable " + st + " no existe ln:"+ stleft);
                 else if(v.getValue() == null) ClientError.getError().log("COPY\n" + st + " No tiene ningún valor ln:"+ stleft);
                 else if(v.getValue().getType() != Value.INTEGER){
                     ClientError.getError().log("COPY\n" + st + " debe ser entero ln:"+ stleft);                    
                 }
                 else{
-                    RESULT=v.getValue().getIntegerValue();
-                }
+                    RESULT=st;
+                }                
             
               CUP$CopyParser$result = parser.getSymbolFactory().newSymbol("integer_value",20, ((java_cup.runtime.Symbol)CUP$CopyParser$stack.peek()), ((java_cup.runtime.Symbol)CUP$CopyParser$stack.peek()), RESULT);
             }
@@ -1053,12 +1052,12 @@ class CUP$CopyParser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 26: // integer_value ::= INTEGER_LITERAL 
             {
-              Integer RESULT =null;
+              String RESULT =null;
 		int stleft = ((java_cup.runtime.Symbol)CUP$CopyParser$stack.peek()).left;
 		int stright = ((java_cup.runtime.Symbol)CUP$CopyParser$stack.peek()).right;
 		String st = (String)((java_cup.runtime.Symbol) CUP$CopyParser$stack.peek()).value;
 		
-                RESULT=Integer.valueOf(st);
+                RESULT=st;
             
               CUP$CopyParser$result = parser.getSymbolFactory().newSymbol("integer_value",20, ((java_cup.runtime.Symbol)CUP$CopyParser$stack.peek()), ((java_cup.runtime.Symbol)CUP$CopyParser$stack.peek()), RESULT);
             }
@@ -1067,15 +1066,17 @@ class CUP$CopyParser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 27: // access_result ::= RESULT DOT result_variables 
             {
-              Value RESULT =null;
+              String RESULT =null;
 		int valleft = ((java_cup.runtime.Symbol)CUP$CopyParser$stack.peek()).left;
 		int valright = ((java_cup.runtime.Symbol)CUP$CopyParser$stack.peek()).right;
-		Value val = (Value)((java_cup.runtime.Symbol) CUP$CopyParser$stack.peek()).value;
-		
-                    if(val == null){
-                        val = new Value("", Value.ERROR);
+		String val = (String)((java_cup.runtime.Symbol) CUP$CopyParser$stack.peek()).value;
+		      
+                    if(val != null){
+                        RESULT=val;
                     }
-                    RESULT=val;
+                    else{
+                        RESULT="";
+                    }
                 
               CUP$CopyParser$result = parser.getSymbolFactory().newSymbol("access_result",9, ((java_cup.runtime.Symbol)CUP$CopyParser$stack.elementAt(CUP$CopyParser$top-2)), ((java_cup.runtime.Symbol)CUP$CopyParser$stack.peek()), RESULT);
             }
@@ -1084,10 +1085,10 @@ class CUP$CopyParser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 28: // result_variables ::= access_score 
             {
-              Value RESULT =null;
+              String RESULT =null;
 		int valleft = ((java_cup.runtime.Symbol)CUP$CopyParser$stack.peek()).left;
 		int valright = ((java_cup.runtime.Symbol)CUP$CopyParser$stack.peek()).right;
-		Value val = (Value)((java_cup.runtime.Symbol) CUP$CopyParser$stack.peek()).value;
+		String val = (String)((java_cup.runtime.Symbol) CUP$CopyParser$stack.peek()).value;
 		
                     RESULT=val;
                 
@@ -1098,10 +1099,10 @@ class CUP$CopyParser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 29: // result_variables ::= access_classes 
             {
-              Value RESULT =null;
+              String RESULT =null;
 		int valleft = ((java_cup.runtime.Symbol)CUP$CopyParser$stack.peek()).left;
 		int valright = ((java_cup.runtime.Symbol)CUP$CopyParser$stack.peek()).right;
-		Value val = (Value)((java_cup.runtime.Symbol) CUP$CopyParser$stack.peek()).value;
+		String val = (String)((java_cup.runtime.Symbol) CUP$CopyParser$stack.peek()).value;
 		
                     RESULT=val;
                 
@@ -1112,10 +1113,10 @@ class CUP$CopyParser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 30: // result_variables ::= access_methods 
             {
-              Value RESULT =null;
+              String RESULT =null;
 		int valleft = ((java_cup.runtime.Symbol)CUP$CopyParser$stack.peek()).left;
 		int valright = ((java_cup.runtime.Symbol)CUP$CopyParser$stack.peek()).right;
-		Value val = (Value)((java_cup.runtime.Symbol) CUP$CopyParser$stack.peek()).value;
+		String val = (String)((java_cup.runtime.Symbol) CUP$CopyParser$stack.peek()).value;
 		
                     RESULT=val;
                 
@@ -1126,10 +1127,10 @@ class CUP$CopyParser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 31: // result_variables ::= access_variables 
             {
-              Value RESULT =null;
+              String RESULT =null;
 		int valleft = ((java_cup.runtime.Symbol)CUP$CopyParser$stack.peek()).left;
 		int valright = ((java_cup.runtime.Symbol)CUP$CopyParser$stack.peek()).right;
-		Value val = (Value)((java_cup.runtime.Symbol) CUP$CopyParser$stack.peek()).value;
+		String val = (String)((java_cup.runtime.Symbol) CUP$CopyParser$stack.peek()).value;
 		
                     RESULT=val;
                 
@@ -1140,10 +1141,10 @@ class CUP$CopyParser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 32: // result_variables ::= access_comments 
             {
-              Value RESULT =null;
+              String RESULT =null;
 		int valleft = ((java_cup.runtime.Symbol)CUP$CopyParser$stack.peek()).left;
 		int valright = ((java_cup.runtime.Symbol)CUP$CopyParser$stack.peek()).right;
-		Value val = (Value)((java_cup.runtime.Symbol) CUP$CopyParser$stack.peek()).value;
+		String val = (String)((java_cup.runtime.Symbol) CUP$CopyParser$stack.peek()).value;
 		
                     RESULT=val;
                 
@@ -1154,9 +1155,10 @@ class CUP$CopyParser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 33: // access_score ::= SCORE 
             {
-              Value RESULT =null;
+              String RESULT =null;
 		
-                    RESULT=new Value(Result.getResult().getScore(), Value.STRING);
+                    String name = "~result~score";                    
+                    RESULT=name;
                 
               CUP$CopyParser$result = parser.getSymbolFactory().newSymbol("access_score",10, ((java_cup.runtime.Symbol)CUP$CopyParser$stack.peek()), ((java_cup.runtime.Symbol)CUP$CopyParser$stack.peek()), RESULT);
             }
@@ -1165,19 +1167,18 @@ class CUP$CopyParser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 34: // access_classes ::= CLASES LBRACKET integer_value RBRACKET DOT class_variables 
             {
-              Value RESULT =null;
+              String RESULT =null;
 		int indexleft = ((java_cup.runtime.Symbol)CUP$CopyParser$stack.elementAt(CUP$CopyParser$top-3)).left;
 		int indexright = ((java_cup.runtime.Symbol)CUP$CopyParser$stack.elementAt(CUP$CopyParser$top-3)).right;
-		Integer index = (Integer)((java_cup.runtime.Symbol) CUP$CopyParser$stack.elementAt(CUP$CopyParser$top-3)).value;
-		
+		String index = (String)((java_cup.runtime.Symbol) CUP$CopyParser$stack.elementAt(CUP$CopyParser$top-3)).value;
+		int paramleft = ((java_cup.runtime.Symbol)CUP$CopyParser$stack.peek()).left;
+		int paramright = ((java_cup.runtime.Symbol)CUP$CopyParser$stack.peek()).right;
+		Integer param = (Integer)((java_cup.runtime.Symbol) CUP$CopyParser$stack.peek()).value;
+		      
                         if(index != null){
-                            RESULT=null;
-                            String val = Result.getResult().getClasses(index);
-                            if(val != null) RESULT=new Value(val , Value.STRING);  
-                            else{
-                                ClientError.getError().log("COPY\n"+"Valor fuera de los límites ln:"+ indexleft);
-                            }                          
-                        }
+                            String name = "~result~clases-"+param+"-,"+index;
+                            RESULT=name;  
+                        }                        
                     
               CUP$CopyParser$result = parser.getSymbolFactory().newSymbol("access_classes",13, ((java_cup.runtime.Symbol)CUP$CopyParser$stack.elementAt(CUP$CopyParser$top-5)), ((java_cup.runtime.Symbol)CUP$CopyParser$stack.peek()), RESULT);
             }
@@ -1197,28 +1198,18 @@ class CUP$CopyParser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 36: // access_methods ::= METODOS LBRACKET integer_value RBRACKET DOT method_variables 
             {
-              Value RESULT =null;
+              String RESULT =null;
 		int indexleft = ((java_cup.runtime.Symbol)CUP$CopyParser$stack.elementAt(CUP$CopyParser$top-3)).left;
 		int indexright = ((java_cup.runtime.Symbol)CUP$CopyParser$stack.elementAt(CUP$CopyParser$top-3)).right;
-		Integer index = (Integer)((java_cup.runtime.Symbol) CUP$CopyParser$stack.elementAt(CUP$CopyParser$top-3)).value;
+		String index = (String)((java_cup.runtime.Symbol) CUP$CopyParser$stack.elementAt(CUP$CopyParser$top-3)).value;
 		int paramleft = ((java_cup.runtime.Symbol)CUP$CopyParser$stack.peek()).left;
 		int paramright = ((java_cup.runtime.Symbol)CUP$CopyParser$stack.peek()).right;
 		Integer param = (Integer)((java_cup.runtime.Symbol) CUP$CopyParser$stack.peek()).value;
 		
-                        if(index != null){
-                            RESULT=null;
-                            String val = Result.getResult().getMethods(index, param);
-                            if(val != null){
-                                if(param == 2){
-                                    RESULT=new Value(val , Value.INTEGER); 
-                                }else{
-                                    RESULT=new Value(val , Value.STRING); 
-                                }                            
-                            } 
-                            else{
-                                ClientError.getError().log("COPY\n"+"Valor fuera de los límites ln:"+ indexleft);
-                            }    
-                        }
+                        if(index != null){                                                       
+                            String name = "~result~metodos-"+param+"-,"+index;                                
+                            RESULT=name;                                                       
+                        }                                                     
                     
               CUP$CopyParser$result = parser.getSymbolFactory().newSymbol("access_methods",12, ((java_cup.runtime.Symbol)CUP$CopyParser$stack.elementAt(CUP$CopyParser$top-5)), ((java_cup.runtime.Symbol)CUP$CopyParser$stack.peek()), RESULT);
             }
@@ -1263,21 +1254,17 @@ class CUP$CopyParser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 40: // access_variables ::= VARIABLES LBRACKET integer_value RBRACKET DOT var_variables 
             {
-              Value RESULT =null;
+              String RESULT =null;
 		int indexleft = ((java_cup.runtime.Symbol)CUP$CopyParser$stack.elementAt(CUP$CopyParser$top-3)).left;
 		int indexright = ((java_cup.runtime.Symbol)CUP$CopyParser$stack.elementAt(CUP$CopyParser$top-3)).right;
-		Integer index = (Integer)((java_cup.runtime.Symbol) CUP$CopyParser$stack.elementAt(CUP$CopyParser$top-3)).value;
+		String index = (String)((java_cup.runtime.Symbol) CUP$CopyParser$stack.elementAt(CUP$CopyParser$top-3)).value;
 		int paramleft = ((java_cup.runtime.Symbol)CUP$CopyParser$stack.peek()).left;
 		int paramright = ((java_cup.runtime.Symbol)CUP$CopyParser$stack.peek()).right;
 		Integer param = (Integer)((java_cup.runtime.Symbol) CUP$CopyParser$stack.peek()).value;
 		
-                        if(index != null){
-                            RESULT=null;
-                            String val = Result.getResult().getVariables(index, param);
-                            if(val != null) RESULT=new Value(val , Value.INTEGER); 
-                            else{
-                                ClientError.getError().log("COPY\n"+"Valor fuera de los límites ln:"+ indexleft);
-                            }    
+                        if(index != null){                            
+                            String name = "~result~variables-"+param+"-,"+index;                                
+                            RESULT=name;                                                             
                         }
                     
               CUP$CopyParser$result = parser.getSymbolFactory().newSymbol("access_variables",11, ((java_cup.runtime.Symbol)CUP$CopyParser$stack.elementAt(CUP$CopyParser$top-5)), ((java_cup.runtime.Symbol)CUP$CopyParser$stack.peek()), RESULT);
@@ -1323,19 +1310,15 @@ class CUP$CopyParser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 44: // access_comments ::= COMENTARIOS LBRACKET integer_value RBRACKET DOT TEXTO_COMENTARIO 
             {
-              Value RESULT =null;
+              String RESULT =null;
 		int indexleft = ((java_cup.runtime.Symbol)CUP$CopyParser$stack.elementAt(CUP$CopyParser$top-3)).left;
 		int indexright = ((java_cup.runtime.Symbol)CUP$CopyParser$stack.elementAt(CUP$CopyParser$top-3)).right;
-		Integer index = (Integer)((java_cup.runtime.Symbol) CUP$CopyParser$stack.elementAt(CUP$CopyParser$top-3)).value;
+		String index = (String)((java_cup.runtime.Symbol) CUP$CopyParser$stack.elementAt(CUP$CopyParser$top-3)).value;
 		
-                        if(index != null){
-                            RESULT=null;
-                            String val = Result.getResult().getComments(index);
-                            if(val != null) RESULT=new Value(val , Value.STRING);  
-                            else{
-                                ClientError.getError().log("COPY\n"+"Valor fuera de los límites ln:"+ indexleft);
-                            }                          
-                        }
+                        if(index != null){                           
+                            String name = "~result~comentarios-0-,"+index;                                
+                            RESULT=name;                        
+                        }                            
                     
               CUP$CopyParser$result = parser.getSymbolFactory().newSymbol("access_comments",14, ((java_cup.runtime.Symbol)CUP$CopyParser$stack.elementAt(CUP$CopyParser$top-5)), ((java_cup.runtime.Symbol)CUP$CopyParser$stack.peek()), RESULT);
             }
@@ -1378,21 +1361,7 @@ class CUP$CopyParser$actions {
           return CUP$CopyParser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 48: // values ::= access_result 
-            {
-              Value RESULT =null;
-		int valleft = ((java_cup.runtime.Symbol)CUP$CopyParser$stack.peek()).left;
-		int valright = ((java_cup.runtime.Symbol)CUP$CopyParser$stack.peek()).right;
-		Value val = (Value)((java_cup.runtime.Symbol) CUP$CopyParser$stack.peek()).value;
-		
-            RESULT=val;
-        
-              CUP$CopyParser$result = parser.getSymbolFactory().newSymbol("values",22, ((java_cup.runtime.Symbol)CUP$CopyParser$stack.peek()), ((java_cup.runtime.Symbol)CUP$CopyParser$stack.peek()), RESULT);
-            }
-          return CUP$CopyParser$result;
-
-          /*. . . . . . . . . . . . . . . . . . . .*/
-          case 49: // values ::= INTEGER_LITERAL 
+          case 48: // values ::= INTEGER_LITERAL 
             {
               Value RESULT =null;
 		int stleft = ((java_cup.runtime.Symbol)CUP$CopyParser$stack.peek()).left;
@@ -1406,7 +1375,7 @@ class CUP$CopyParser$actions {
           return CUP$CopyParser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 50: // operation ::= operation PLUS term 
+          case 49: // operation ::= operation PLUS term 
             {
               Operation RESULT =null;
 		int opLleft = ((java_cup.runtime.Symbol)CUP$CopyParser$stack.elementAt(CUP$CopyParser$top-2)).left;
@@ -1426,7 +1395,7 @@ class CUP$CopyParser$actions {
           return CUP$CopyParser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 51: // operation ::= operation MINUS term 
+          case 50: // operation ::= operation MINUS term 
             {
               Operation RESULT =null;
 		int opLleft = ((java_cup.runtime.Symbol)CUP$CopyParser$stack.elementAt(CUP$CopyParser$top-2)).left;
@@ -1446,7 +1415,7 @@ class CUP$CopyParser$actions {
           return CUP$CopyParser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 52: // operation ::= term 
+          case 51: // operation ::= term 
             {
               Operation RESULT =null;
 		int termleft = ((java_cup.runtime.Symbol)CUP$CopyParser$stack.peek()).left;
@@ -1460,7 +1429,7 @@ class CUP$CopyParser$actions {
           return CUP$CopyParser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 53: // term ::= term MULT factor 
+          case 52: // term ::= term MULT factor 
             {
               Operation RESULT =null;
 		int opLleft = ((java_cup.runtime.Symbol)CUP$CopyParser$stack.elementAt(CUP$CopyParser$top-2)).left;
@@ -1480,7 +1449,7 @@ class CUP$CopyParser$actions {
           return CUP$CopyParser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 54: // term ::= term DIV factor 
+          case 53: // term ::= term DIV factor 
             {
               Operation RESULT =null;
 		int opLleft = ((java_cup.runtime.Symbol)CUP$CopyParser$stack.elementAt(CUP$CopyParser$top-2)).left;
@@ -1500,7 +1469,7 @@ class CUP$CopyParser$actions {
           return CUP$CopyParser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 55: // term ::= factor 
+          case 54: // term ::= factor 
             {
               Operation RESULT =null;
 		int factorleft = ((java_cup.runtime.Symbol)CUP$CopyParser$stack.peek()).left;
@@ -1514,7 +1483,7 @@ class CUP$CopyParser$actions {
           return CUP$CopyParser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 56: // factor ::= values 
+          case 55: // factor ::= values 
             {
               Operation RESULT =null;
 		int valleft = ((java_cup.runtime.Symbol)CUP$CopyParser$stack.peek()).left;
@@ -1528,7 +1497,7 @@ class CUP$CopyParser$actions {
           return CUP$CopyParser$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 57: // factor ::= name 
+          case 56: // factor ::= name 
             {
               Operation RESULT =null;
 		int nameleft = ((java_cup.runtime.Symbol)CUP$CopyParser$stack.peek()).left;
@@ -1536,6 +1505,20 @@ class CUP$CopyParser$actions {
 		String name = (String)((java_cup.runtime.Symbol) CUP$CopyParser$stack.peek()).value;
 		
             RESULT = new Operation(name, nameleft);
+        
+              CUP$CopyParser$result = parser.getSymbolFactory().newSymbol("factor",25, ((java_cup.runtime.Symbol)CUP$CopyParser$stack.peek()), ((java_cup.runtime.Symbol)CUP$CopyParser$stack.peek()), RESULT);
+            }
+          return CUP$CopyParser$result;
+
+          /*. . . . . . . . . . . . . . . . . . . .*/
+          case 57: // factor ::= access_result 
+            {
+              Operation RESULT =null;
+		int nameleft = ((java_cup.runtime.Symbol)CUP$CopyParser$stack.peek()).left;
+		int nameright = ((java_cup.runtime.Symbol)CUP$CopyParser$stack.peek()).right;
+		String name = (String)((java_cup.runtime.Symbol) CUP$CopyParser$stack.peek()).value;
+		
+            RESULT = new Operation(name, nameleft, true);
         
               CUP$CopyParser$result = parser.getSymbolFactory().newSymbol("factor",25, ((java_cup.runtime.Symbol)CUP$CopyParser$stack.peek()), ((java_cup.runtime.Symbol)CUP$CopyParser$stack.peek()), RESULT);
             }
@@ -1701,13 +1684,13 @@ class CUP$CopyParser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 74: // for_tag_open ::= FOR_OPEN ITERADOR COLON integer_value HASTA COLON integer_value GT 
             {
-              Object RESULT =null;
+              ArrayList<Integer> RESULT =null;
 		int indexleft = ((java_cup.runtime.Symbol)CUP$CopyParser$stack.elementAt(CUP$CopyParser$top-4)).left;
 		int indexright = ((java_cup.runtime.Symbol)CUP$CopyParser$stack.elementAt(CUP$CopyParser$top-4)).right;
-		Integer index = (Integer)((java_cup.runtime.Symbol) CUP$CopyParser$stack.elementAt(CUP$CopyParser$top-4)).value;
+		String index = (String)((java_cup.runtime.Symbol) CUP$CopyParser$stack.elementAt(CUP$CopyParser$top-4)).value;
 		int index2left = ((java_cup.runtime.Symbol)CUP$CopyParser$stack.elementAt(CUP$CopyParser$top-1)).left;
 		int index2right = ((java_cup.runtime.Symbol)CUP$CopyParser$stack.elementAt(CUP$CopyParser$top-1)).right;
-		Integer index2 = (Integer)((java_cup.runtime.Symbol) CUP$CopyParser$stack.elementAt(CUP$CopyParser$top-1)).value;
+		String index2 = (String)((java_cup.runtime.Symbol) CUP$CopyParser$stack.elementAt(CUP$CopyParser$top-1)).value;
 
               CUP$CopyParser$result = parser.getSymbolFactory().newSymbol("for_tag_open",75, ((java_cup.runtime.Symbol)CUP$CopyParser$stack.elementAt(CUP$CopyParser$top-7)), ((java_cup.runtime.Symbol)CUP$CopyParser$stack.peek()), RESULT);
             }
@@ -1744,7 +1727,12 @@ class CUP$CopyParser$actions {
           case 78: // values_html ::= name 
             {
               Object RESULT =null;
-
+		int stleft = ((java_cup.runtime.Symbol)CUP$CopyParser$stack.peek()).left;
+		int stright = ((java_cup.runtime.Symbol)CUP$CopyParser$stack.peek()).right;
+		String st = (String)((java_cup.runtime.Symbol) CUP$CopyParser$stack.peek()).value;
+		
+            RESULT=st;
+        
               CUP$CopyParser$result = parser.getSymbolFactory().newSymbol("values_html",57, ((java_cup.runtime.Symbol)CUP$CopyParser$stack.peek()), ((java_cup.runtime.Symbol)CUP$CopyParser$stack.peek()), RESULT);
             }
           return CUP$CopyParser$result;
@@ -1753,7 +1741,12 @@ class CUP$CopyParser$actions {
           case 79: // values_html ::= STRING_LITERAL 
             {
               Object RESULT =null;
-
+		int stleft = ((java_cup.runtime.Symbol)CUP$CopyParser$stack.peek()).left;
+		int stright = ((java_cup.runtime.Symbol)CUP$CopyParser$stack.peek()).right;
+		String st = (String)((java_cup.runtime.Symbol) CUP$CopyParser$stack.peek()).value;
+		
+            RESULT=st;
+        
               CUP$CopyParser$result = parser.getSymbolFactory().newSymbol("values_html",57, ((java_cup.runtime.Symbol)CUP$CopyParser$stack.peek()), ((java_cup.runtime.Symbol)CUP$CopyParser$stack.peek()), RESULT);
             }
           return CUP$CopyParser$result;
@@ -1762,7 +1755,12 @@ class CUP$CopyParser$actions {
           case 80: // values_html ::= INTEGER_LITERAL 
             {
               Object RESULT =null;
-
+		int stleft = ((java_cup.runtime.Symbol)CUP$CopyParser$stack.peek()).left;
+		int stright = ((java_cup.runtime.Symbol)CUP$CopyParser$stack.peek()).right;
+		String st = (String)((java_cup.runtime.Symbol) CUP$CopyParser$stack.peek()).value;
+		
+            RESULT=st;
+        
               CUP$CopyParser$result = parser.getSymbolFactory().newSymbol("values_html",57, ((java_cup.runtime.Symbol)CUP$CopyParser$stack.peek()), ((java_cup.runtime.Symbol)CUP$CopyParser$stack.peek()), RESULT);
             }
           return CUP$CopyParser$result;
@@ -1771,7 +1769,12 @@ class CUP$CopyParser$actions {
           case 81: // values_html ::= TEXT 
             {
               Object RESULT =null;
-
+		int stleft = ((java_cup.runtime.Symbol)CUP$CopyParser$stack.peek()).left;
+		int stright = ((java_cup.runtime.Symbol)CUP$CopyParser$stack.peek()).right;
+		String st = (String)((java_cup.runtime.Symbol) CUP$CopyParser$stack.peek()).value;
+		
+            RESULT=st;
+        
               CUP$CopyParser$result = parser.getSymbolFactory().newSymbol("values_html",57, ((java_cup.runtime.Symbol)CUP$CopyParser$stack.peek()), ((java_cup.runtime.Symbol)CUP$CopyParser$stack.peek()), RESULT);
             }
           return CUP$CopyParser$result;
@@ -1780,7 +1783,12 @@ class CUP$CopyParser$actions {
           case 82: // values_html ::= call_variable 
             {
               Object RESULT =null;
-
+		int stleft = ((java_cup.runtime.Symbol)CUP$CopyParser$stack.peek()).left;
+		int stright = ((java_cup.runtime.Symbol)CUP$CopyParser$stack.peek()).right;
+		String st = (String)((java_cup.runtime.Symbol) CUP$CopyParser$stack.peek()).value;
+		
+            RESULT=st;
+        
               CUP$CopyParser$result = parser.getSymbolFactory().newSymbol("values_html",57, ((java_cup.runtime.Symbol)CUP$CopyParser$stack.peek()), ((java_cup.runtime.Symbol)CUP$CopyParser$stack.peek()), RESULT);
             }
           return CUP$CopyParser$result;
@@ -1788,8 +1796,13 @@ class CUP$CopyParser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 83: // call_variable ::= DPESOS LPAREN id_call RPAREN DPESOS 
             {
-              Object RESULT =null;
-
+              String RESULT =null;
+		int stleft = ((java_cup.runtime.Symbol)CUP$CopyParser$stack.elementAt(CUP$CopyParser$top-2)).left;
+		int stright = ((java_cup.runtime.Symbol)CUP$CopyParser$stack.elementAt(CUP$CopyParser$top-2)).right;
+		String st = (String)((java_cup.runtime.Symbol) CUP$CopyParser$stack.elementAt(CUP$CopyParser$top-2)).value;
+		 
+                        RESULT=st;
+                    
               CUP$CopyParser$result = parser.getSymbolFactory().newSymbol("call_variable",52, ((java_cup.runtime.Symbol)CUP$CopyParser$stack.elementAt(CUP$CopyParser$top-4)), ((java_cup.runtime.Symbol)CUP$CopyParser$stack.peek()), RESULT);
             }
           return CUP$CopyParser$result;
@@ -1797,8 +1810,23 @@ class CUP$CopyParser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 84: // id_call ::= name 
             {
-              Object RESULT =null;
-
+              String RESULT =null;
+		int stleft = ((java_cup.runtime.Symbol)CUP$CopyParser$stack.peek()).left;
+		int stright = ((java_cup.runtime.Symbol)CUP$CopyParser$stack.peek()).right;
+		String st = (String)((java_cup.runtime.Symbol) CUP$CopyParser$stack.peek()).value;
+		
+            /* RESULT="";
+            CopyVariable variable = ParseCopy.getCopy().getVariable(st);
+            if(variable == null){
+                ClientError.getError().log("COPY\nLa variable no está definida ln:" + stleft);
+            }
+            else if(variable.getValue() == null){
+                ClientError.getError().log("COPY\nLa variable no tiene ningún valor ln:" + stleft);
+            }else{
+                RESULT=variable.getValue().getValue();
+            } */
+            RESULT=st;
+        
               CUP$CopyParser$result = parser.getSymbolFactory().newSymbol("id_call",19, ((java_cup.runtime.Symbol)CUP$CopyParser$stack.peek()), ((java_cup.runtime.Symbol)CUP$CopyParser$stack.peek()), RESULT);
             }
           return CUP$CopyParser$result;
@@ -1806,8 +1834,13 @@ class CUP$CopyParser$actions {
           /*. . . . . . . . . . . . . . . . . . . .*/
           case 85: // id_call ::= access_result 
             {
-              Object RESULT =null;
-
+              String RESULT =null;
+		int valleft = ((java_cup.runtime.Symbol)CUP$CopyParser$stack.peek()).left;
+		int valright = ((java_cup.runtime.Symbol)CUP$CopyParser$stack.peek()).right;
+		String val = (String)((java_cup.runtime.Symbol) CUP$CopyParser$stack.peek()).value;
+		
+            RESULT=val;
+        
               CUP$CopyParser$result = parser.getSymbolFactory().newSymbol("id_call",19, ((java_cup.runtime.Symbol)CUP$CopyParser$stack.peek()), ((java_cup.runtime.Symbol)CUP$CopyParser$stack.peek()), RESULT);
             }
           return CUP$CopyParser$result;
@@ -1852,7 +1885,12 @@ class CUP$CopyParser$actions {
           case 90: // html_element ::= values_html 
             {
               Object RESULT =null;
-
+		int stleft = ((java_cup.runtime.Symbol)CUP$CopyParser$stack.peek()).left;
+		int stright = ((java_cup.runtime.Symbol)CUP$CopyParser$stack.peek()).right;
+		Object st = (Object)((java_cup.runtime.Symbol) CUP$CopyParser$stack.peek()).value;
+		
+                    //add to html
+                
               CUP$CopyParser$result = parser.getSymbolFactory().newSymbol("html_element",60, ((java_cup.runtime.Symbol)CUP$CopyParser$stack.peek()), ((java_cup.runtime.Symbol)CUP$CopyParser$stack.peek()), RESULT);
             }
           return CUP$CopyParser$result;

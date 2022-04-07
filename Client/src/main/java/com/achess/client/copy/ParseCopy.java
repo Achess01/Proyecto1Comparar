@@ -28,11 +28,10 @@ public class ParseCopy {
         return copy;
     }
     
-    public static void run(){
-        clear();
+    public static void run(){        
         parse("Test");
         if(!ClientError.getError().isErrorFounded()){
-            System.out.println(getCopy());
+            System.out.println(getCopy());            
         }
     }
     

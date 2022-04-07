@@ -13,6 +13,10 @@ public class Main {
     public static void main(String[] args) {
         System.out.println("Probando");
         ArrayList<String> arr = new ArrayList();
-        System.out.println(arr.get(3));
+        arr.add("Hola");
+        arr.add("Amigos");
+        arr.add("Hola2");
+        arr.add("AAA");
+                
     }
 }

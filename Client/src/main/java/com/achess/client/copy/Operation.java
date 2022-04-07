@@ -24,7 +24,8 @@ public class Operation{
     private Operation right;    
     private String varName;
     private int line;
-    boolean identifier;
+    boolean identifier;    
+    boolean result;
 
     public Operation(int type, Operation left, Operation right, int line) {                
         this.type = type;
@@ -44,6 +45,11 @@ public class Operation{
         this.line = line;
         this.type = UNITARIO;
         this.identifier = true;
+    }
+    
+    public Operation(String varName, int line, boolean result){
+        this(varName, line);                
+        this.result = true;                
     }
 
     public void setLeft(Operation left) {
@@ -95,8 +101,27 @@ public class Operation{
        }
         return Value.ERROR;
     }
+    
+    private boolean isNumber(String n){
+        try{
+            Integer.parseInt(n);
+            return true;
+        }catch(Exception e){
+            return false;
+        }
+    }
        
-    public Value run() {        
+    public Value run() {
+        if(result && !varName.equals("~result~score")){
+            String vname[] = varName.split(",");              
+            if(vname.length != 2) return null;
+            if(isNumber(vname[1])){
+                varName = vname[0] + vname[1];
+            }else{
+                CopyVariable variable = ParseCopy.getCopy().getVariable(vname[1]);
+                varName = vname[0] + variable.getValue().getValue();
+            }            
+        }
         if(identifier){
             CopyVariable variable = ParseCopy.getCopy().getVariable(varName);
             if(variable == null){
