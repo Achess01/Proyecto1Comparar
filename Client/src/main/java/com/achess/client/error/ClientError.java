@@ -3,6 +3,8 @@
  */
 package com.achess.client.error;
 
+import com.achess.client.ui.ErroresPanel;
+
 /**
  *
  * @author achess
@@ -28,7 +30,7 @@ public class ClientError {
     
     public void log(String error){
         errorFounded = true;
-        System.out.println(error);
+        ErroresPanel.getErrores().addError(error);        
     }   
 
     public boolean isErrorFounded() {

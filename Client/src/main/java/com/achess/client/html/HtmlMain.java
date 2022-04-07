@@ -12,6 +12,8 @@ import java.util.ArrayList;
 public class HtmlMain implements HtmlElement{
     private static HtmlMain html;
     
+    private String finalHtml;
+    
     public static HtmlMain getHtml(){
         if(html == null){
             html = new HtmlMain();
@@ -27,13 +29,16 @@ public class HtmlMain implements HtmlElement{
 
     @Override
     public String run() {
-        //System.out.println(this);
-        StringBuilder sb = new StringBuilder();
-        for(HtmlElement e: elements){
-            sb.append(e.run());
-            sb.append('\n');
-        }        
-        return "<html>\n" +  sb.toString() + "</html>";
+        
+        if(finalHtml == null){
+            StringBuilder sb = new StringBuilder();
+                for(HtmlElement e: elements){
+                sb.append(e.run());
+                sb.append('\n');
+            }
+            finalHtml = "<html>"+sb.toString() + "</html>";
+        }                                         
+        return finalHtml;        
     }
 
     public void setElements(ArrayList<HtmlElement> elements) {

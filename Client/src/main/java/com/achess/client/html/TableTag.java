@@ -27,7 +27,7 @@ public class TableTag implements HtmlElement{
     
     @Override
     public String run() {        
-        return "<table>\n" + getElementsHtml() + "</table>";
+        return "<table border=\"1\">\n" + getElementsHtml() + "</table>";
     }
 
     @Override
