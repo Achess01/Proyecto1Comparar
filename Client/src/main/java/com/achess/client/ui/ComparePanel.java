@@ -155,7 +155,7 @@ public class ComparePanel extends javax.swing.JPanel {
             this.panelCopy.add(HtmlPanel.getHtml());            
             SwingUtilities.updateComponentTreeUI(this);
         }else{
-            JOptionPane.showConfirmDialog(null,"Se compiló con erroes");
+            JOptionPane.showMessageDialog(null,"Se compiló con erroes");
         }
     }//GEN-LAST:event_button3ActionPerformed
 

@@ -17,7 +17,9 @@ import java.io.StringReader;
  * @author achess
  */
 public class ParseJson {
+        
      public static void parse(String code){                        
+            ClientError.reset();
             Reader reader = new StringReader(code);            
             JsonLexer lexer = new JsonLexer(reader);                
             JsonParser parser = new JsonParser(lexer);             

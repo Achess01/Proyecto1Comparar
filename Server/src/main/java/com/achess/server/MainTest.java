@@ -53,12 +53,7 @@ public class MainTest {
                 MainForm.getForm().setVisible(true);                
             }
         });
-         //        
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {           
-                parse("Lampara", "Lampara1");
-            }
-        });
+         //                
     }
      
     private static void clear(){

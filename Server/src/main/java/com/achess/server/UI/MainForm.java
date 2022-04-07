@@ -3,6 +3,14 @@
  */
 package com.achess.server.UI;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileReader;
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileNameExtensionFilter;
+
 /**
  *
  * @author achess
@@ -34,6 +42,44 @@ public class MainForm extends javax.swing.JFrame {
     public void log(String text){
         logText.append(text);
     }
+    
+    private boolean openProjects(boolean isPJ){        
+        boolean withErrors = true;
+        JFileChooser upload = new JFileChooser();                        
+        upload.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+        upload.showOpenDialog(null);        
+        FileReader fr = null;              
+        try{
+            File dir = upload.getSelectedFile();
+            File[] files = dir.listFiles();            
+            for(File file: files){                
+                String text="";
+                fr = new FileReader(file);
+                BufferedReader br = new BufferedReader(fr);                            
+                String line;
+                while((line = br.readLine()) != null){                           
+                    text+=line + "\n";
+                }                    
+                ProjectsJava.getPJ().addFile(text, isPJ);                
+            }
+            
+        }
+        catch (Exception ex){
+              ex.printStackTrace(System.out);
+              withErrors = false;
+        }
+        finally{
+            try{
+                if(fr!=null){
+                fr.close();
+                }
+            }catch(Exception ex){
+                //ex.printStackTrace(System.out);
+                withErrors = false;
+            }                
+        }
+        return withErrors;
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -45,6 +91,11 @@ public class MainForm extends javax.swing.JFrame {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         logText = new javax.swing.JTextArea();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
+        jMenuItem3 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Server");
@@ -67,6 +118,36 @@ public class MainForm extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(logText);
 
+        jMenu1.setText("File");
+
+        jMenuItem1.setText("proyecto 1");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem1);
+
+        jMenuItem2.setText("proyecto2");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem2);
+
+        jMenuItem3.setText("compilar");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem3);
+
+        jMenuBar1.add(jMenu1);
+
+        setJMenuBar(jMenuBar1);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -80,7 +161,7 @@ public class MainForm extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 443, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 420, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -89,9 +170,31 @@ public class MainForm extends javax.swing.JFrame {
 
     private void logTextComponentAdded(java.awt.event.ContainerEvent evt) {//GEN-FIRST:event_logTextComponentAdded
         // TODO add your handling code here:
+        ProjectsJava.getPJ().parse();
     }//GEN-LAST:event_logTextComponentAdded
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        // TODO add your handling code here:
+        if(!openProjects(true)) JOptionPane.showMessageDialog(null, "Error al cargar los archivos");
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        // TODO add your handling code here:
+        if(!openProjects(false)) JOptionPane.showMessageDialog(null, "Error al cargar los archivos");
+        
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+        // TODO add your handling code here:
+        ProjectsJava.getPJ().parse();
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
    
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea logText;
     // End of variables declaration//GEN-END:variables

@@ -162,9 +162,7 @@ public class JavaProject {
         if(!JavaError.getError().isErrorFounded()){
             doCompare();
             MainForm.getForm().log("------- SIN ERRORES -------\n");
-            MainForm.getForm().log(Repeated.getRepeated().toString());
-            MainForm.getForm().log("------- DETALLES QUITAR -------\n");
-            MainForm.getForm().log(Repeated.getRepeated().getDetails());
+            MainForm.getForm().log(Repeated.getRepeated().toString());            
         }
     }
     private static void doCompare(){
