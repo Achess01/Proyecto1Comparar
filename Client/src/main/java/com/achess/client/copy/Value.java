@@ -21,7 +21,7 @@ public class Value {
     
     public Integer getIntegerValue() {
         if(type == INTEGER) return Integer.valueOf(value);
-        return null;
+        return 0;
     }
     
     public String getValue() {

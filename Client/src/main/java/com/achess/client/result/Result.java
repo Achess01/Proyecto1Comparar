@@ -50,8 +50,8 @@ public class Result {
         comments = new ArrayList();        
     }
 
-    public Score getScore() {
-        return score;
+    public String getScore() {
+        return score.getValue();
     }
 
     public void setScore(Score score) {
@@ -60,32 +60,59 @@ public class Result {
     
     
 
-    public ArrayList<JavaClass> getClasses() {
-        return classes;
+    public String getClasses(int index) {
+        if(index >=0 && index < classes.size()){
+            return classes.get(index).getValue();
+        }
+        return null;
     }
 
     public void setClasses(ArrayList<JavaClass> classes) {
         this.classes = classes;
     }
 
-    public ArrayList<Method> getMethods() {
-        return methods;
+    public String getMethods(int index, int param) {
+        if(index >=0 && index < methods.size()){
+            switch(param){
+                case 0:
+                    return methods.get(index).getValue();                    
+                case 1:
+                    return methods.get(index).getType();
+                case 2:
+                    return String.valueOf(methods.get(index).getParameters());
+            }
+            
+        }
+        return null;
     }
 
     public void setMethods(ArrayList<Method> methods) {
         this.methods = methods;
     }
 
-    public ArrayList<Variable> getVariables() {
-        return variables;
+    public String getVariables(int index, int param) {
+        if(index >=0 && index < variables.size()){
+            switch(param){
+                case 0:
+                    return variables.get(index).getValue();                    
+                case 1:
+                    return variables.get(index).getType();
+                case 2:
+                    return variables.get(index).getFunction();
+            }            
+        }        
+        return null;
     }
 
     public void setVariables(ArrayList<Variable> variables) {
         this.variables = variables;
     }
 
-    public ArrayList<Comment> getComments() {
-        return comments;
+    public String getComments(int index) {
+        if(index >=0 && index < comments.size()){
+            return comments.get(index).getValue();
+        }        
+        return null;
     }
 
     public void setComments(ArrayList<Comment> comments) {

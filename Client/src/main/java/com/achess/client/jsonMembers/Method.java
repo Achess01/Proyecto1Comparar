@@ -16,6 +16,16 @@ public class Method extends Member{
         this.parameters = parameters;
     }
 
+    public String getType() {
+        return type;
+    }
+
+    public int getParameters() {
+        return parameters;
+    }
+
+    
+    
     @Override
     public String toString() {
         return "Method{" + "name=" + value + ", type=" + type + ", parameters=" + parameters + '}';
