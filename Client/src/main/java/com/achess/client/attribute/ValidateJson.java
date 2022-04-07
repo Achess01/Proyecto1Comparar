@@ -76,8 +76,7 @@ public class ValidateJson {
         
         if(!error){
             ParseCopy.clear();
-            Result.set(score, classes, methods, variables, comments);
-            System.out.println(Result.getResult());
+            Result.set(score, classes, methods, variables, comments);            
             ParseCopy.run();
         }
     }

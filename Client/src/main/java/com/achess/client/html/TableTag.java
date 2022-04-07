@@ -16,15 +16,19 @@ public class TableTag implements HtmlElement{
         this.elements = elements;
     }
         
-    
-    @Override
-    public String run() {
+    protected String getElementsHtml(){
         StringBuilder sb = new StringBuilder();
         for(HtmlElement e: elements){
             sb.append(e.run());
             sb.append('\n');
         }
         return sb.toString();
+    }
+    
+    @Override
+    public String run() {
+        
+        return "<table>" + getElementsHtml() + "</table>";
     }
     
 }
